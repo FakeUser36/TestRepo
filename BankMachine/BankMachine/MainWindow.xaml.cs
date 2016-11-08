@@ -21,11 +21,35 @@ namespace BankMachine
     public partial class MainWindow : Window
     {
         int currentBox = 0;
+        enum pages {startPage, removeCardPage};
+
+        private void GoToPage(pages page)
+        {
+            Thickness marg = new Thickness();
+            switch (page)
+            {
+                case pages.startPage:
+                    StartPage.Visibility = Visibility.Visible;
+                    marg = StartPage.Margin;
+                    marg.Left = 0;
+                    StartPage.Margin = marg;
+                    break;
+                case pages.removeCardPage:
+                    RemoveCardPage.Visibility = Visibility.Visible;
+                    marg = RemoveCardPage.Margin;
+                    marg.Left = 0;
+                    RemoveCardPage.Margin = marg;
+                    break;
+            }
+        }
 
         public MainWindow()
         {
             InitializeComponent();
+            GoToPage(pages.startPage);
         }
+
+        
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -40,6 +64,7 @@ namespace BankMachine
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             StartPage.Visibility = Visibility.Hidden;
+            GoToPage(pages.removeCardPage);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -179,6 +204,11 @@ namespace BankMachine
                 default:
                     break;
             }
+        }
+
+        private void EnterCard(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
