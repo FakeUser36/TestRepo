@@ -27,6 +27,7 @@ namespace BankMachine
         enum pages { startPage, removeCardPage, enterPinPage};
         List<string> accountNumbers = new List<string>();
     
+        int[] balances = { 123, 123, 123 }; // whole dollars only; we'll put .0 after each to pretend cents are supported
         private void GoToPage(pages page)
         {
             Thickness marg = new Thickness();
@@ -65,6 +66,11 @@ namespace BankMachine
         public MainWindow()
         {
             InitializeComponent();
+            GoToPage(pages.startPage);
+
+            balance_chk.Text = "$" + balances[0] + ".0";
+            balance_sav.Text = "$" + balances[1] + ".0";
+            balance_tfs.Text = "$" + balances[2] + ".0";
             RemoveCardPage.Visibility = Visibility.Hidden;
             EnterPinPage.Visibility = Visibility.Hidden;
             GoToPage(pages.startPage);

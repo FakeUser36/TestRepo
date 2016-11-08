@@ -87,6 +87,30 @@
                 <TextBlock x:Name="PinEntryErrorMessage" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="64" Width="132" Text="Your PIN can only be 4 digits long" FontSize="16"/>
             </Grid>
         </Grid>
+        <Grid x:Name="MainMenuPage" Margin="756,11,-752,-11">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="19*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="MainMenu_textBox1" HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="Main Menu" VerticalAlignment="Top" Width="517" FontSize="36"/>
+            <TextBlock x:Name="MainMenu_textBox2" HorizontalAlignment="Left" Height="44" Margin="76,142,0,0" TextWrapping="Wrap" Text="Actions" VerticalAlignment="Top" Width="126" FontSize="24"/>
+            <Button x:Name="btn_withdraw" Content="Withdraw" HorizontalAlignment="Left" Margin="76,191,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+            <Button x:Name="btn_deposit" Content="Deposit" HorizontalAlignment="Left" Margin="76,260,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+            <Button x:Name="btn_transfer" Content="Transfer" HorizontalAlignment="Left" Margin="76,328,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+            <TextBlock x:Name="mm_textBlock" HorizontalAlignment="Left" Margin="90,226,0,0" TextWrapping="Wrap" Text="Withdraw money from an account." VerticalAlignment="Top"/>
+            <TextBlock x:Name="mm_textBlock_Copy" HorizontalAlignment="Left" Margin="90,295,0,0" TextWrapping="Wrap" Text="Deposit money to an account." VerticalAlignment="Top"/>
+            <TextBlock x:Name="mm_textBlock_Copy1" HorizontalAlignment="Left" Margin="90,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"><Run Text="Transfer funds between accounts, to other people, or pay bills."/><LineBreak/><Run/></TextBlock>
+            <TextBlock x:Name="MainMenu_textBox2_Copy" HorizontalAlignment="Left" Height="64" Margin="432,142,0,0" TextWrapping="Wrap" Text="Account balances" VerticalAlignment="Top" Width="188" FontSize="24"/>
+            <Button x:Name="btn_logout" Content="Logout" HorizontalAlignment="Left" Margin="291,407,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+            <Grid HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="201" Margin="445,186,0,0" RenderTransformOrigin="0.61,0.455">
+                <Label x:Name="label" Content="Checking" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" RenderTransformOrigin="0.5,0.5"/>
+                <Label x:Name="label_Copy" Content="Saving" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,36,0,0" RenderTransformOrigin="0.592,0.462"/>
+                <Label x:Name="label_Copy1" Content="TFSA" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,64,0,0" RenderTransformOrigin="0.592,0.462"/>
+                <TextBlock x:Name="balance_chk" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="balance_sav" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="balance_tfs" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
+            </Grid>
+        </Grid>
     </Grid>
 
 </Window>
