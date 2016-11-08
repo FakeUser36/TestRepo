@@ -21,8 +21,9 @@ namespace BankMachine
     public partial class MainWindow : Window
     {
         int currentBox = 0;
-        enum pages {startPage, removeCardPage};
-
+        enum pages { startPage, removeCardPage, enterPinPage };
+        List<string> accountNumbers = new List<string>();
+    
         private void GoToPage(pages page)
         {
             Thickness marg = new Thickness();
@@ -32,12 +33,27 @@ namespace BankMachine
                     StartPage.Visibility = Visibility.Visible;
                     marg = StartPage.Margin;
                     marg.Left = 0;
+                    marg.Right = 0;
+                    marg.Top = 0;
+                    marg.Bottom = 46;
                     StartPage.Margin = marg;
                     break;
                 case pages.removeCardPage:
                     RemoveCardPage.Visibility = Visibility.Visible;
                     marg = RemoveCardPage.Margin;
                     marg.Left = 0;
+                    marg.Right = 0;
+                    marg.Top = 0;
+                    marg.Bottom = 46;
+                    RemoveCardPage.Margin = marg;
+                    break;
+                case pages.enterPinPage:
+                    EnterPinPage.Visibility = Visibility.Visible;
+                    marg = RemoveCardPage.Margin;
+                    marg.Left = 0;
+                    marg.Right = 0;
+                    marg.Top = 0;
+                    marg.Bottom = 46;
                     RemoveCardPage.Margin = marg;
                     break;
             }
@@ -46,25 +62,18 @@ namespace BankMachine
         public MainWindow()
         {
             InitializeComponent();
+            RemoveCardPage.Visibility = Visibility.Hidden;
+            EnterPinPage.Visibility = Visibility.Hidden;
             GoToPage(pages.startPage);
         }
-
         
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        //Start Page Event Handeler Functions
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            //Check if account # is valid
             StartPage.Visibility = Visibility.Hidden;
-            GoToPage(pages.removeCardPage);
+            GoToPage(pages.enterPinPage);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -210,5 +219,34 @@ namespace BankMachine
         {
 
         }
+
+        //Pin Entry Page Event Handler Functions
+
+        private void enterNumToPin(object sender, RoutedEventArgs e)
+        {
+            string num = (((Button)sender).Content.ToString());
+            if (PinEntry.Text.Length < 4)
+            {
+                PinErrorInfo.Visibiltiy
+                PinEntry.AppendText(num);
+            }
+            else{ 
+                
+            }
+            
+        }
+
+        private void EnterPinOK(object sender, RoutedEventArgs e)
+        {
+            //Check if pin # is valid
+            EnterPinPage.Visibility = Visibility.Hidden;
+            GoToPage(pages.removeCardPage);
+        }
+
+        private void EnterPinBack(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
     }
 }

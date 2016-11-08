@@ -1,13 +1,13 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="MainProperties" mc:Ignorable="d" x:Class="BankMachine.MainWindow"
-        Height="538.536" Width="706.225" Title="                                                                                          ATM" BorderThickness="1">
+        Height="538.536" Width="706.225" Title="ATM" BorderThickness="1">
     <Grid x:Name="Wrapper" Margin="0,0,0,0">
-        <Grid x:Name="Hardware" Margin="8,0,21,20">
-            <Rectangle x:Name="CardSlot" Fill="#FF555555" HorizontalAlignment="Left" Height="32" Margin="31,466,0,-12" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="EnterCard"/>
+        <Grid x:Name="Hardware" Margin="0,465,0,0">
+            <Rectangle x:Name="CardSlot" Fill="#FF555555" HorizontalAlignment="Left" Height="32" Margin="38,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="EnterCard"/>
 
         </Grid>
-        <Grid x:Name="StartPage" Margin="-773,28,802,157">
+        <Grid x:Name="StartPage" Margin="-701,0,701,46">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="244*"/>
                 <ColumnDefinition/>
@@ -23,12 +23,12 @@
                 <TextBlock HorizontalAlignment="Left" Height="64" TextWrapping="Wrap" Text="OR" VerticalAlignment="Top" Width="82" FontSize="48" Margin="38,0,0,0"/>
                 <TextBlock HorizontalAlignment="Left" Margin="0,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Width="152" RenderTransformOrigin="0.343,0.712" Height="27"><Run Text="Forgot your card?"/><LineBreak/></TextBlock>
             </Grid>
-            <Grid Grid.Column="3" Margin="10,88,0,-64" HorizontalAlignment="Left" Width="232">
+            <Grid Grid.Column="3" Margin="10,88,0,0" HorizontalAlignment="Left" Width="232">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Width="224" RenderTransformOrigin="0.343,0.712" Text="Enter your account number:" Height="23"/>
-                <TextBox x:Name="PinEntry0" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="7,32,0,0" Text="----" TextChanged="TextBox_TextChanged_1" TextAlignment="Center"/>
-                <TextBox x:Name="PinEntry1" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="63,32,0,0" Text="----" TextChanged="TextBox_TextChanged_1" TextAlignment="Center"/>
-                <TextBox x:Name="PinEntry2" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="119,32,0,0" Text="----" TextChanged="TextBox_TextChanged_1" TextAlignment="Center"/>
-                <TextBox x:Name="PinEntry3" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="175,32,0,0" Text="----" TextChanged="TextBox_TextChanged_1" TextAlignment="Center"/>
+                <TextBox x:Name="PinEntry0" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="7,32,0,0" Text="----" TextAlignment="Center"/>
+                <TextBox x:Name="PinEntry1" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="63,32,0,0" Text="----" TextAlignment="Center"/>
+                <TextBox x:Name="PinEntry2" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="119,32,0,0" Text="----" TextAlignment="Center"/>
+                <TextBox x:Name="PinEntry3" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="175,32,0,0" Text="----" TextAlignment="Center"/>
                 <Grid x:Name="NumPad" HorizontalAlignment="Left" Height="189" Margin="41,88,0,0" VerticalAlignment="Top" Width="151" Background="Gray">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="80*"/>
@@ -49,11 +49,39 @@
                 </Grid>
             </Grid>
         </Grid>
-        <Grid x:Name="RemoveCardPage" Margin="10,10,19,10">
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="You have successfully logged in" VerticalAlignment="Top" Width="517" FontSize="36"/>
-            <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="90" Margin="239,154,0,0" TextWrapping="Wrap" Text="Please remove your card to proceed" VerticalAlignment="Top" Width="234" FontSize="24"/>
+        <Grid x:Name="RemoveCardPage" Margin="-722,427,722,-381">
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="You have successfully logged in" VerticalAlignment="Top" Width="517" FontSize="36" BorderThickness="0"/>
+            <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="90" Margin="239,154,0,0" TextWrapping="Wrap" Text="Please remove your card to proceed" VerticalAlignment="Top" Width="234" FontSize="24" BorderThickness="0"/>
             <Image x:Name="Card2" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="73" Source="Card.png" Margin="119,181,0,0"/>
             <Image x:Name="DownArrow_Copy" HorizontalAlignment="Left" Height="149" VerticalAlignment="Top" Width="70" Source="DownArrow.png" Margin="122,262,0,0" Stretch="Fill"/>
+        </Grid>
+        <Grid x:Name="EnterPinPage" Margin="10,10,-10,36">
+            <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="109" Margin="39,45,0,0" TextWrapping="Wrap" Text="You have successfully entered your card/account number" VerticalAlignment="Top" Width="606" FontSize="36" BorderThickness="0"/>
+            <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="90" Margin="39,154,0,0" TextWrapping="Wrap" Text="Please enter your PIN to proceed and press OK" VerticalAlignment="Top" Width="234" FontSize="24" BorderThickness="0"/>
+            <Grid x:Name="NumPadPinEntry" HorizontalAlignment="Left" Height="188" Margin="495,262,0,0" VerticalAlignment="Top" Width="150" Background="Gray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Content="1" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToPin"/>
+                <Button Content="2" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToPin"/>
+                <Button Content="3" HorizontalAlignment="Left" Margin="101,10,0,46" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToEntry"/>
+                <Button Content="4" HorizontalAlignment="Left" Margin="8,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Column="0" Click="enterNumToPin"/>
+                <Button Content="5" HorizontalAlignment="Left" Margin="55,53,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Column="0" Click="enterNumToPin"/>
+                <Button Content="6" HorizontalAlignment="Left" Margin="101,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Column="0" Click="enterNumToPin"/>
+                <Button Content="7" HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToPin"/>
+                <Button Content="8" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToPin"/>
+                <Button Content="9" HorizontalAlignment="Left" Margin="102,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToPin"/>
+                <Button x:Name="Cancel1" Content="    x&#xA;Cancel" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FFFF0A0A"/>
+                <Button x:Name="Back1" Content="  &lt;&#xA;Back" HorizontalAlignment="Left" Margin="55,4,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="2" Click="EnterPinBack" Background="#FFF5E00B"/>
+                <Button x:Name="OK1" Content="  √   &#xA; OK" HorizontalAlignment="Left" Margin="101,45,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Background="#FF36EE00" Click="EnterPinOK" Grid.RowSpan="2"/>
+            </Grid>
+            <TextBox x:Name="PinEntry" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="20" Margin="495,210,0,0" TextAlignment="Center"/>
+            <Grid HorizontalAlignment="Left" Height="64" Margin="340,193,0,0" VerticalAlignment="Top" Width="328"/>
         </Grid>
     </Grid>
 
