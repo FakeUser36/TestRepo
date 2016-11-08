@@ -20,8 +20,11 @@ namespace BankMachine
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Start Page Variables
         int currentBox = 0;
-        enum pages { startPage, removeCardPage, enterPinPage };
+        bool loginViaAcctNum = false;
+
+        enum pages { startPage, removeCardPage, enterPinPage};
         List<string> accountNumbers = new List<string>();
     
         private void GoToPage(pages page)
@@ -72,6 +75,7 @@ namespace BankMachine
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             //Check if account # is valid
+            loginViaAcctNum = true;
             StartPage.Visibility = Visibility.Hidden;
             GoToPage(pages.enterPinPage);
         }
@@ -227,11 +231,12 @@ namespace BankMachine
             string num = (((Button)sender).Content.ToString());
             if (PinEntry.Text.Length < 4)
             {
-                PinErrorInfo.Visibiltiy
+                PinErrorInfo.Visibility = Visibility.Hidden;
                 PinEntry.AppendText(num);
             }
-            else{ 
-                
+            else
+            {
+                PinErrorInfo.Visibility = Visibility.Visible;
             }
             
         }
@@ -239,13 +244,29 @@ namespace BankMachine
         private void EnterPinOK(object sender, RoutedEventArgs e)
         {
             //Check if pin # is valid
-            EnterPinPage.Visibility = Visibility.Hidden;
-            GoToPage(pages.removeCardPage);
+            if (true)
+            {
+                EnterPinPage.Visibility = Visibility.Hidden;
+                if (loginViaAcctNum)
+                {
+                    GoToPage(pages.removeCardPage);
+                }
+                else
+                {
+                    GoToPage(pages.removeCardPage);
+                }
+            }
+            else { 
+            
+            }
+            
+            
         }
 
         private void EnterPinBack(object sender, RoutedEventArgs e)
         {
-
+            PinErrorInfo.Visibility = Visibility.Hidden;
+            PinEntry.Text = PinEntry.Text.Substring(0, PinEntry.Text.Length - 1);
         }
         
     }

@@ -5,6 +5,7 @@
     <Grid x:Name="Wrapper" Margin="0,0,0,0">
         <Grid x:Name="Hardware" Margin="0,465,0,0">
             <Rectangle x:Name="CardSlot" Fill="#FF555555" HorizontalAlignment="Left" Height="32" Margin="38,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="EnterCard"/>
+            <Rectangle Fill="Black" HorizontalAlignment="Left" Height="12" Margin="70,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="176"/>
 
         </Grid>
         <Grid x:Name="StartPage" Margin="-701,0,701,46">
@@ -81,7 +82,10 @@
                 <Button x:Name="OK1" Content="  √   &#xA; OK" HorizontalAlignment="Left" Margin="101,45,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Background="#FF36EE00" Click="EnterPinOK" Grid.RowSpan="2"/>
             </Grid>
             <TextBox x:Name="PinEntry" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="20" Margin="495,210,0,0" TextAlignment="Center"/>
-            <Grid HorizontalAlignment="Left" Height="64" Margin="340,193,0,0" VerticalAlignment="Top" Width="328"/>
+            <Grid x:Name="PinErrorInfo" HorizontalAlignment="Left" Height="64" Margin="340,193,0,0" VerticalAlignment="Top" Width="328" Visibility="Hidden">
+                <Border BorderBrush="#FFFD0404" BorderThickness="3" HorizontalAlignment="Left" Height="44" Margin="145,12,0,0" VerticalAlignment="Top" Width="169"/>
+                <TextBlock x:Name="PinEntryErrorMessage" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="64" Width="132" Text="Your PIN can only be 4 digits long" FontSize="16"/>
+            </Grid>
         </Grid>
     </Grid>
 
