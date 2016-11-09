@@ -23,11 +23,11 @@ namespace BankMachine
         //Start Page Variables
         int currentBox = 0;
         bool loginViaAcctNum = false;
+        string currentAccountNumber = "";
 
         enum pages { startPage, removeCardPage, enterPinPage};
-        List<string> accountNumbers = new List<string>();
-    
-        int[] balances = { 123, 123, 123 }; // whole dollars only; we'll put .0 after each to pretend cents are supported
+        Dictionary<string, int> accountNumbersAndPins = new Dictionary<string,int>();
+        int[] balances = { 123, 123, 123 };
         private void GoToPage(pages page)
         {
             Thickness marg = new Thickness();
@@ -53,12 +53,12 @@ namespace BankMachine
                     break;
                 case pages.enterPinPage:
                     EnterPinPage.Visibility = Visibility.Visible;
-                    marg = RemoveCardPage.Margin;
+                    marg = EnterPinPage.Margin;
                     marg.Left = 0;
                     marg.Right = 0;
                     marg.Top = 0;
                     marg.Bottom = 46;
-                    RemoveCardPage.Margin = marg;
+                    EnterPinPage.Margin = marg;
                     break;
             }
         }
@@ -71,6 +71,11 @@ namespace BankMachine
             balance_chk.Text = "$" + balances[0] + ".0";
             balance_sav.Text = "$" + balances[1] + ".0";
             balance_tfs.Text = "$" + balances[2] + ".0";
+
+            accountNumbersAndPins.Add("1234123412341234", 1234);
+            accountNumbersAndPins.Add("1111222233334444", 1111);
+            accountNumbersAndPins.Add("1111111166666666", 1616);
+
             RemoveCardPage.Visibility = Visibility.Hidden;
             EnterPinPage.Visibility = Visibility.Hidden;
             GoToPage(pages.startPage);
@@ -80,14 +85,30 @@ namespace BankMachine
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            AccNumError.Visibility = Visibility.Visible;
             //Check if account # is valid
-            loginViaAcctNum = true;
-            StartPage.Visibility = Visibility.Hidden;
-            GoToPage(pages.enterPinPage);
+            string acctNum = PinEntry0.Text+PinEntry1.Text+PinEntry2.Text+PinEntry3.Text;
+            if(acctNum.Length!=16){
+                AccNumError.Text = "Your account number must be 16 digits long!";
+                AccNumError.Visibility = Visibility.Visible;
+                return;
+            }
+            if (accountNumbersAndPins.ContainsKey(acctNum))
+            {
+                currentAccountNumber = acctNum;
+                loginViaAcctNum = true;
+                StartPage.Visibility = Visibility.Hidden;
+                GoToPage(pages.enterPinPage);
+            }
+            else {
+                AccNumError.Text = "That is not a valid account number, please enter a valid account number.";
+                AccNumError.Visibility = Visibility.Visible;
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
+            AccNumError.Visibility = Visibility.Hidden;
             switch (currentBox)
             {
                 case 0:
@@ -95,7 +116,7 @@ namespace BankMachine
                     {
                         //Do nothing
                     }
-                    else if (PinEntry0.Text.Length != 1)
+                    else if (PinEntry0.Text.Length > 1)
                     {
                         PinEntry0.Text = PinEntry0.Text.Substring(0,PinEntry0.Text.Length-1);
                     }
@@ -109,7 +130,7 @@ namespace BankMachine
                     {
                         //Do nothing
                     }
-                    else if (PinEntry1.Text.Length != 1)
+                    else if (PinEntry1.Text.Length > 1)
                     {
                         PinEntry1.Text = PinEntry1.Text.Substring(0,PinEntry1.Text.Length-1);
                     }
@@ -117,7 +138,6 @@ namespace BankMachine
                     {
                         PinEntry1.Text = "----";
                         currentBox--;
-                        Back_Click(sender, e);
                     }
                     break;
                 case 2:
@@ -125,7 +145,7 @@ namespace BankMachine
                     {
                         //Do nothing
                     }
-                    else if (PinEntry2.Text.Length != 1)
+                    else if (PinEntry2.Text.Length > 1)
                     {
                         PinEntry2.Text = PinEntry2.Text.Substring(0,PinEntry2.Text.Length-1);
                     }
@@ -133,7 +153,6 @@ namespace BankMachine
                     {
                         PinEntry2.Text = "----";
                         currentBox--;
-                        Back_Click(sender, e);
                     }
                     break;
                 case 3:
@@ -141,7 +160,7 @@ namespace BankMachine
                     {
                         //Do nothing
                     }
-                    else if (PinEntry3.Text.Length != 1)
+                    else if (PinEntry3.Text.Length > 1)
                     {
                         PinEntry3.Text = PinEntry3.Text.Substring(0,PinEntry3.Text.Length-1);
                     }
@@ -149,7 +168,6 @@ namespace BankMachine
                     {
                         PinEntry3.Text = "----";
                         currentBox--;
-                        Back_Click(sender, e);
                     }
                     break;
                 default:
@@ -158,6 +176,9 @@ namespace BankMachine
         }
 
         private void enterNumToEntry(object sender, RoutedEventArgs e){
+
+            AccNumError.Visibility = Visibility.Hidden;
+
             string num = (((Button)sender).Content.ToString());
             switch (currentBox)
             {
@@ -211,13 +232,15 @@ namespace BankMachine
                     {
                         PinEntry3.Text = num.ToString();
                     }
-                    else if (PinEntry3.Text.Length != 4)
+                    else if (PinEntry3.Text.Length < 4)
                     {
                         PinEntry3.Text += num.ToString();
                     }
                     else 
                     {
-                        //Do nothing
+                        //The Acct num can only be 16 digits long
+                        AccNumError.Text = "Your account number can only be 16 digits long";
+                        AccNumError.Visibility = Visibility.Visible;
                     }
                     break;
                 default:
@@ -242,6 +265,7 @@ namespace BankMachine
             }
             else
             {
+                PinEntryErrorMessage.Text = "Pin can only be 4 digits long";
                 PinErrorInfo.Visibility = Visibility.Visible;
             }
             
@@ -249,6 +273,12 @@ namespace BankMachine
 
         private void EnterPinOK(object sender, RoutedEventArgs e)
         {
+            if (PinEntry.Text.Length != 4)
+            {                
+                PinEntryErrorMessage.Text = "Pin must be 4 digits long";
+                PinErrorInfo.Visibility = Visibility.Visible;
+                return;
+            }
             //Check if pin # is valid
             if (true)
             {
@@ -262,8 +292,9 @@ namespace BankMachine
                     GoToPage(pages.removeCardPage);
                 }
             }
-            else { 
-            
+            else {
+                PinEntryErrorMessage.Text = "Pin is not valid";
+                PinErrorInfo.Visibility = Visibility.Visible;
             }
             
             
@@ -272,8 +303,13 @@ namespace BankMachine
         private void EnterPinBack(object sender, RoutedEventArgs e)
         {
             PinErrorInfo.Visibility = Visibility.Hidden;
-            PinEntry.Text = PinEntry.Text.Substring(0, PinEntry.Text.Length - 1);
+            if (PinEntry.Text.Length > 1)
+            {
+                PinEntry.Text = PinEntry.Text.Substring(0, PinEntry.Text.Length - 1);
+            }
+            else {
+                PinEntry.Text = "";
+            }
         }
-        
     }
 }

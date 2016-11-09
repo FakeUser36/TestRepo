@@ -8,7 +8,7 @@
             <Rectangle Fill="Black" HorizontalAlignment="Left" Height="12" Margin="70,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="176"/>
 
         </Grid>
-        <Grid x:Name="StartPage" Margin="-701,0,701,46">
+        <Grid x:Name="StartPage" Margin="0,0,0,46">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="244*"/>
                 <ColumnDefinition/>
@@ -48,6 +48,7 @@
                     <Button x:Name="Back" Content="  &lt;&#xD;&#xA;Back" HorizontalAlignment="Left" Margin="55,59,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="1" Click="Back_Click" Background="#FFF5E00B"/>
                     <Button x:Name="OK" Content="  √   &#xD;&#xA; OK" HorizontalAlignment="Left" Margin="101,59,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Background="#FF36EE00" Click="OK_Click"/>
                 </Grid>
+                <TextBox x:Name="AccNumError" HorizontalAlignment="Left" Height="57" Margin="10,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="212" BorderBrush="#FFFB0101" BorderThickness="3" Visibility="Hidden"/>
             </Grid>
         </Grid>
         <Grid x:Name="RemoveCardPage" Margin="-722,427,722,-381">
@@ -56,7 +57,7 @@
             <Image x:Name="Card2" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="73" Source="Card.png" Margin="119,181,0,0"/>
             <Image x:Name="DownArrow_Copy" HorizontalAlignment="Left" Height="149" VerticalAlignment="Top" Width="70" Source="DownArrow.png" Margin="122,262,0,0" Stretch="Fill"/>
         </Grid>
-        <Grid x:Name="EnterPinPage" Margin="10,10,-10,36">
+        <Grid x:Name="EnterPinPage" Margin="739,46,-739,0">
             <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="109" Margin="39,45,0,0" TextWrapping="Wrap" Text="You have successfully entered your card/account number" VerticalAlignment="Top" Width="606" FontSize="36" BorderThickness="0"/>
             <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="90" Margin="39,154,0,0" TextWrapping="Wrap" Text="Please enter your PIN to proceed and press OK" VerticalAlignment="Top" Width="234" FontSize="24" BorderThickness="0"/>
             <Grid x:Name="NumPadPinEntry" HorizontalAlignment="Left" Height="188" Margin="495,262,0,0" VerticalAlignment="Top" Width="150" Background="Gray">
