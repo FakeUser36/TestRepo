@@ -34,7 +34,8 @@ namespace BankMachine
     public partial class MainWindow : Window
     {
         //Variables used by more than one page
-        enum pages { startPage, enterPinPage, removeCardPage, mainMenuPage, depositPage };
+        enum pages { startPage, enterPinPage, removeCardPage, mainMenuPage, depositPage, actionSuccessfulPage };
+
         bool loginViaAcctNum = false;
         Account currentAccount = null;
         pages currentPage;
@@ -63,74 +64,35 @@ namespace BankMachine
         //Used to reposition grids and make them visible to make switching easy
         private void GoToPage(pages page)
         {
-
             Thickness marg = new Thickness();
-
-            //Set current page to hidden
-            switch(currentPage){
-                case pages.startPage:
-                    StartPage.Visibility = Visibility.Hidden;
-                    break;
-                case pages.enterPinPage:
-                    EnterPinPage.Visibility = Visibility.Hidden;
-                    break;
-                case pages.mainMenuPage:
-                    MainMenuPage.Visibility = Visibility.Hidden;
-                    break;
-                case pages.depositPage:
-                    DepositPage.Visibility = Visibility.Hidden;
-                    break;
-                default:
-                    break;
-            }
-
-            //Set desired page to visible
+            marg.Left = 0;
+            marg.Right = 0;
+            marg.Top = 0;
+            marg.Bottom = 46;
             switch (page)
             {
                 case pages.startPage:
                     StartPage.Visibility = Visibility.Visible;
-                    marg = StartPage.Margin;
-                    marg.Left = 0;
-                    marg.Right = 0;
-                    marg.Top = 0;
-                    marg.Bottom = 46;
                     StartPage.Margin = marg;
                     break;
                 case pages.enterPinPage:
                     EnterPinPage.Visibility = Visibility.Visible;
-                    marg = EnterPinPage.Margin;
-                    marg.Left = 0;
-                    marg.Right = 0;
-                    marg.Top = 0;
-                    marg.Bottom = 46;
                     EnterPinPage.Margin = marg;
                     break;
                 case pages.removeCardPage:
                     RemoveCardPage.Visibility = Visibility.Visible;
-                    marg = RemoveCardPage.Margin;
-                    marg.Left = 0;
-                    marg.Right = 0;
-                    marg.Top = 0;
-                    marg.Bottom = 46;
                     RemoveCardPage.Margin = marg;
                     break;
-                
                 case pages.mainMenuPage:
                     MainMenuPage.Visibility = Visibility.Visible;
-                    marg = MainMenuPage.Margin;
-                    marg.Left = 0;
-                    marg.Right = 0;
-                    marg.Top = 0;
-                    marg.Bottom = 46;
                     MainMenuPage.Margin = marg;
+                    break;
+                case pages.actionSuccessfulPage:
+                    ActionSuccessfulPage.Visibility = Visibility.Visible;
+                    ActionSuccessfulPage.Margin = marg;
                     break;
                 case pages.depositPage:
                     DepositPage.Visibility = Visibility.Visible;
-                    marg = DepositPage.Margin;
-                    marg.Left = 0;
-                    marg.Right = 0;
-                    marg.Top = 0;
-                    marg.Bottom = 46;
                     DepositPage.Margin = marg;
                     break;
 
@@ -140,7 +102,6 @@ namespace BankMachine
             currentPage = page;
         }
 
-
         private void updateBalances()
         {
             balance_chk.Text = "$" + currentAccount.balances[0];
@@ -149,16 +110,18 @@ namespace BankMachine
             balance_chk1.Text = "$" + currentAccount.balances[0];
             balance_sav1.Text = "$" + currentAccount.balances[1];
             balance_tfs1.Text = "$" + currentAccount.balances[2];
+            balance_chk2.Text = "$" + currentAccount.balances[0];
+            balance_sav2.Text = "$" + currentAccount.balances[1];
+            balance_tfs2.Text = "$" + currentAccount.balances[2];
         }
 
         public MainWindow()
         {
             InitializeComponent();
+            GoToPage(pages.startPage);
 
             accounts.Add(new Account("1234123412341234", 1234, accsBals));
-
             accounts.Add(new Account("1111222233334444", 1111, accsBals));
-
             accounts.Add(new Account("1111111166666666", 1616, accsBals));
 
             //Make all pages except start page hidden
@@ -167,9 +130,10 @@ namespace BankMachine
             RemoveCardPage.Visibility = Visibility.Hidden;
             EnterPinPage.Visibility = Visibility.Hidden;
             DepositPage.Visibility = Visibility.Hidden;
+            ActionSuccessfulPage.Visibility = Visibility.Hidden;
             GoToPage(pages.startPage);
         }
-        
+
         //Start Page Event Handeler Functions
 
         private void OK_Click(object sender, RoutedEventArgs e)
@@ -186,7 +150,6 @@ namespace BankMachine
             {
                 loginViaAcctNum = true;
                 currentBox = 0;
-
                 GoToPage(pages.enterPinPage);                
             }
             else {
@@ -441,6 +404,5 @@ namespace BankMachine
         }
 
         //Deposit Page Methods And Action Listeners
-
     }
 }

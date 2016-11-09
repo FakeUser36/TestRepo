@@ -6,7 +6,6 @@
         <Grid x:Name="Hardware" Margin="0,465,0,0">
             <Rectangle x:Name="CardSlot" Fill="#FF555555" HorizontalAlignment="Left" Height="32" Margin="38,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="EnterCard"/>
             <Rectangle Fill="Black" HorizontalAlignment="Left" Height="12" Margin="70,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="176"/>
-
         </Grid>
         <Grid x:Name="StartPage" Margin="20,571,-20,-525">
             <Grid.ColumnDefinitions>
@@ -92,7 +91,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="MainMenu_textBox1" HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="Main Menu" VerticalAlignment="Top" Width="517" FontSize="36"/>
+            <TextBlock x:Name="MainMenu_textBox1" HorizontalAlignment="Left" Height="62" Margin="258,40,0,0" TextWrapping="Wrap" Text="Main Menu" VerticalAlignment="Top" Width="191" FontSize="36"/>
             <TextBlock x:Name="MainMenu_textBox2" HorizontalAlignment="Left" Height="44" Margin="76,142,0,0" TextWrapping="Wrap" Text="Actions" VerticalAlignment="Top" Width="126" FontSize="24"/>
             <Button x:Name="btn_withdraw" Content="Withdraw" HorizontalAlignment="Left" Margin="76,191,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
             <Button x:Name="btn_deposit" Content="Deposit" HorizontalAlignment="Left" Margin="76,260,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="DepositButton"/>
@@ -125,6 +124,21 @@
                 <RadioButton Content="Checking" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
                 <RadioButton Content="Saving" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top"/>
                 <RadioButton Content="TFSA" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="ActionSuccessfulPage" Height="407" VerticalAlignment="Bottom" Margin="756,0,-756,-449">
+            <TextBlock x:Name="MainMenu_textBox2_Copy2" HorizontalAlignment="Left" Height="31" Margin="248,155,0,0" TextWrapping="Wrap" Text="Account balances" VerticalAlignment="Top" Width="188" FontSize="24" Grid.ColumnSpan="2"/>
+            <Button x:Name="btn_transfer_Copy" Content="Return to Main Menu" HorizontalAlignment="Left" Margin="275,300,0,0" VerticalAlignment="Top" Width="120" Height="30" Grid.ColumnSpan="2"/>
+            <Button x:Name="btn_transfer_Copy1" Content="Logout" HorizontalAlignment="Left" Margin="275,344,0,0" VerticalAlignment="Top" Width="120" Height="30" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="mm_textBlock_Copy2" HorizontalAlignment="Left" Margin="424,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="Return to the main menu to choose a new action."/>
+            <TextBlock x:Name="MainMenu_textBox1_Copy" HorizontalAlignment="Left" Height="62" Margin="148,30,0,0" TextWrapping="Wrap" Text="Transaction Successful" VerticalAlignment="Top" Width="373" FontSize="36" Grid.ColumnSpan="2"/>
+            <Grid HorizontalAlignment="Left" Height="93" VerticalAlignment="Top" Width="202" Margin="248,186,0,0" RenderTransformOrigin="0.61,0.455" Grid.ColumnSpan="2">
+                <Label x:Name="label1" Content="Checking" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" RenderTransformOrigin="0.5,0.5"/>
+                <Label x:Name="label_Copy2" Content="Saving" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,36,0,0" RenderTransformOrigin="0.592,0.462"/>
+                <Label x:Name="label_Copy3" Content="TFSA" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,64,0,0" RenderTransformOrigin="0.592,0.462"/>
+                <TextBlock x:Name="balance_chk2" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="balance_sav2" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="balance_tfs2" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
             </Grid>
         </Grid>
     </Grid>
