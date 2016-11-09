@@ -93,7 +93,7 @@
             </Grid.RowDefinitions>
             <TextBlock x:Name="MainMenu_textBox1" HorizontalAlignment="Left" Height="62" Margin="258,40,0,0" TextWrapping="Wrap" Text="Main Menu" VerticalAlignment="Top" Width="191" FontSize="36"/>
             <TextBlock x:Name="MainMenu_textBox2" HorizontalAlignment="Left" Height="44" Margin="76,142,0,0" TextWrapping="Wrap" Text="Actions" VerticalAlignment="Top" Width="126" FontSize="24"/>
-            <Button x:Name="btn_withdraw" Content="Withdraw" HorizontalAlignment="Left" Margin="76,191,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+            <Button x:Name="btn_withdraw" Content="Withdraw" HorizontalAlignment="Left" Margin="76,191,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="WithdrawPageButton"/>
             <Button x:Name="btn_deposit" Content="Deposit" HorizontalAlignment="Left" Margin="76,260,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="DepositButton"/>
             <Button x:Name="btn_transfer" Content="Transfer" HorizontalAlignment="Left" Margin="76,328,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
             <TextBlock x:Name="mm_textBlock" HorizontalAlignment="Left" Margin="90,226,0,0" TextWrapping="Wrap" Text="Withdraw money from an account." VerticalAlignment="Top"/>
@@ -110,7 +110,7 @@
                 <TextBlock x:Name="balance_tfs" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
             </Grid>
         </Grid>
-        <Grid x:Name="DepositPage" Margin="0,0,0,46">
+        <Grid x:Name="DepositPage" Margin="-8,-561,8,607">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -140,6 +140,46 @@
                 <TextBlock x:Name="balance_sav2" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_tfs2" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
             </Grid>
+        </Grid>
+        <Grid x:Name="WithdrawPage" Margin="0,0,0,46">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="Withdraw Money" VerticalAlignment="Top" Width="517" FontSize="36" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Height="31" Margin="40,146,0,0" TextWrapping="Wrap" Text="Select An Account" VerticalAlignment="Top" Width="198" FontSize="24"/>
+            <Button x:Name="WWbtn_logout1" Content="Logout" HorizontalAlignment="Left" Margin="291,407,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
+            <Grid HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="201" Margin="37,182,0,0" RenderTransformOrigin="0.61,0.455">
+                <TextBlock x:Name="balance_chk3" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="balance_sav3" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="balance_tfs3" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
+                <RadioButton Content="Checking" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="Saving" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="TFSA" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+            </Grid>
+            <Image x:Name="bill5" HorizontalAlignment="Left" Height="57" Margin="306,113,0,0" VerticalAlignment="Top" Width="107" Source="images/bill_5.jpg"/>
+            <Image x:Name="bill10" HorizontalAlignment="Left" Height="49" Margin="306,170,0,0" VerticalAlignment="Top" Width="107" Source="images/bill_10.jpg"/>
+            <Image x:Name="bill20" HorizontalAlignment="Left" Height="49" Margin="306,225,0,0" VerticalAlignment="Top" Width="107" Source="images/bill_20.jpg"/>
+            <Image x:Name="bill50" HorizontalAlignment="Left" Height="50" Margin="306,280,0,0" VerticalAlignment="Top" Width="107" Source="images/bill_50.jpg"/>
+            <Image x:Name="bill100" HorizontalAlignment="Left" Height="50" Margin="306,335,0,0" VerticalAlignment="Top" Width="107" Source="images/bill_100.jpg"/>
+            <Button x:Name="sub5" Tag="-5" Content="-" HorizontalAlignment="Left" Margin="423,143,0,0" VerticalAlignment="Top" Width="22" Height="21" RenderTransformOrigin="0.633,1.467" Click="withdrawBillCountClick"/>
+            <Button x:Name="plus5" Tag="+5" Content="+" HorizontalAlignment="Left" Margin="423,116,0,0" VerticalAlignment="Top" Width="22" Height="21" RenderTransformOrigin="0.213,0.587" Click="withdrawBillCountClick"/>
+            <TextBlock x:Name="numof5" HorizontalAlignment="Left" Margin="457,129,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="22" Height="17"/>
+            <Button x:Name="sub10" Tag="-10" Content="-" HorizontalAlignment="Left" Margin="423,197,0,0" VerticalAlignment="Top" Width="22" Height="21" RenderTransformOrigin="0.633,1.467" Click="withdrawBillCountClick"/>
+            <Button x:Name="plus10" Tag="+10" Content="+" HorizontalAlignment="Left" Margin="423,170,0,0" VerticalAlignment="Top" Width="22" Height="21" RenderTransformOrigin="0.213,0.587" Click="withdrawBillCountClick"/>
+            <TextBlock x:Name="numof10" HorizontalAlignment="Left" Margin="457,183,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="22" Height="17"/>
+            <Button x:Name="sub20" Tag="-20" Content="-" HorizontalAlignment="Left" Margin="423,252,0,0" VerticalAlignment="Top" Width="22" Height="21" RenderTransformOrigin="0.633,1.467" Click="withdrawBillCountClick"/>
+            <Button x:Name="plus20" Tag="+20" Content="+" HorizontalAlignment="Left" Margin="423,225,0,0" VerticalAlignment="Top" Width="22" Height="21" RenderTransformOrigin="0.213,0.587" Click="withdrawBillCountClick"/>
+            <TextBlock x:Name="numof20" HorizontalAlignment="Left" Margin="457,238,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="22" Height="17"/>
+            <Button x:Name="sub50" Tag="-50" Content="-" HorizontalAlignment="Left" Margin="423,310,0,0" VerticalAlignment="Top" Width="22" Height="22" RenderTransformOrigin="0.633,1.467" Click="withdrawBillCountClick"/>
+            <Button x:Name="plus50" Tag="+50" Content="+" HorizontalAlignment="Left" Margin="423,283,0,0" VerticalAlignment="Top" Width="22" Height="22" RenderTransformOrigin="0.213,0.587" Click="withdrawBillCountClick"/>
+            <TextBlock x:Name="numof50" HorizontalAlignment="Left" Margin="457,296,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="22" Height="17"/>
+            <Button x:Name="sub100" Tag="-100" Content="-" HorizontalAlignment="Left" Margin="423,364,0,0" VerticalAlignment="Top" Width="22" Height="22" RenderTransformOrigin="0.633,1.467" Click="withdrawBillCountClick"/>
+            <Button x:Name="plus100" Tag="+100" Content="+" HorizontalAlignment="Left" Margin="423,337,0,0" VerticalAlignment="Top" Width="22" Height="22" RenderTransformOrigin="0.213,0.587" Click="withdrawBillCountClick"/>
+            <TextBlock x:Name="numof100" HorizontalAlignment="Left" Margin="457,350,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="22" Height="17"/>
+            <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="501,116,0,0" TextWrapping="Wrap" Text="Increment the number of each bill  you want to withdraw." VerticalAlignment="Top" Width="113" Height="69"/>
+            <Button x:Name="button1" Content="Confirm Withdraw" HorizontalAlignment="Left" Margin="492,349,0,0" VerticalAlignment="Top" Width="122" Height="33"/>
+            <TextBlock HorizontalAlignment="Left" Height="31" Margin="520,309,0,0" TextWrapping="Wrap" Text="Total: " VerticalAlignment="Top" Width="63" FontSize="24"/>
+            <TextBlock x:Name="withdraw_total" HorizontalAlignment="Left" Height="31" Margin="588,313,0,0" TextWrapping="Wrap" Text="$0" VerticalAlignment="Top" Width="54" FontSize="18" RenderTransformOrigin="1.498,0.591"/>
         </Grid>
     </Grid>
 

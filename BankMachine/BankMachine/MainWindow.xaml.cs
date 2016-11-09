@@ -31,10 +31,48 @@ namespace BankMachine
         }
     }
 
+    /// <summary>
+    /// Keeps track of bill counts on the withdraw page.
+    /// </summary>
+    public class Withdraw
+    {
+        private int[] billCounts = new int[5];
+        private int[] values = { 5, 10, 20, 50, 100 };
+        public Withdraw()
+        {
+            reset();
+        }
+        public void reset()
+        {
+            Array.Clear(this.billCounts, 0, this.billCounts.Length);
+        }
+        public int change(int value, int count)
+        {
+            int index = Array.IndexOf(values, value);
+            // error if index not found.
+            if (this.billCounts[index] + count < 0)
+            {
+                this.billCounts[index] = 0;
+            }
+            else
+            {
+                this.billCounts[index] += count;
+            }
+            return this.billCounts[index];
+        }
+        public int getTotal()
+        {
+            int total = 0;
+            for (int i = 0; i < 5; ++i)
+                total += this.billCounts[i] * this.values[i];
+            return total;
+        }
+    }
+
     public partial class MainWindow : Window
     {
         //Variables used by more than one page
-        enum pages { startPage, enterPinPage, removeCardPage, mainMenuPage, depositPage, actionSuccessfulPage };
+        enum pages { startPage, enterPinPage, removeCardPage, mainMenuPage, depositPage, actionSuccessfulPage, withdrawPage };
 
         bool loginViaAcctNum = false;
         Account currentAccount = null;
@@ -42,6 +80,9 @@ namespace BankMachine
 
         //Test accounts
         List<Account> accounts = new List<Account>();
+
+        //Withdraw data
+        Withdraw withdrawData = new Withdraw();
 
         //Dictionary<string, double> accsBals = new Dictionary<string, double>();
         double[] accsBals = { 1561.22, 12122.35, 5001.02 };
@@ -95,6 +136,10 @@ namespace BankMachine
                     DepositPage.Visibility = Visibility.Visible;
                     DepositPage.Margin = marg;
                     break;
+                case pages.withdrawPage:
+                    WithdrawPage.Visibility = Visibility.Visible;
+                    WithdrawPage.Margin = marg;
+                    break;
 
                 default:
                     break;
@@ -131,6 +176,7 @@ namespace BankMachine
             EnterPinPage.Visibility = Visibility.Hidden;
             DepositPage.Visibility = Visibility.Hidden;
             ActionSuccessfulPage.Visibility = Visibility.Hidden;
+            WithdrawPage.Visibility = Visibility.Hidden;
             GoToPage(pages.startPage);
         }
 
@@ -401,6 +447,38 @@ namespace BankMachine
             PinEntry.Text = "";
             currentAccount = null;
             GoToPage(pages.startPage);
+        }
+
+        /* Event handler for each + and - button on the withdraw page.
+           Updates the text fields beside the buttons.
+           Updates the total sum text field.
+        */
+        private void withdrawBillCountClick(object sender, RoutedEventArgs e)
+        {
+            string buttonTag = (string) (sender as Button).Tag;
+
+            //Parse Tag for bill values (5, 10, 20, 50, 100)
+            int billValue = Int32.Parse(buttonTag.Substring(1, buttonTag.Length-1));
+
+            //Tag starts with either - or +
+            string diffTag = buttonTag[0].ToString();
+            int diff = (diffTag == "-") ? -1 : 1;
+
+            TextBlock billCountTextBlock = (TextBlock)this.FindName("numof"+billValue.ToString());
+
+            //Set count of bills
+            if (billCountTextBlock != null)
+                billCountTextBlock.Text = withdrawData.change(billValue, diff).ToString();
+
+            //Set total
+            int total = withdrawData.getTotal();
+            TextBlock totalTextBlock = (TextBlock)this.FindName("withdraw_total");
+            totalTextBlock.Text = total.ToString();
+        }
+
+        private void WithdrawPageButton(object sender, RoutedEventArgs e)
+        {
+            GoToPage(pages.withdrawPage);
         }
 
         //Deposit Page Methods And Action Listeners
