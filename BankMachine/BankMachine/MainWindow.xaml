@@ -5,7 +5,7 @@
     <Grid x:Name="Wrapper" Margin="0,0,0,0">
         <Grid x:Name="Hardware" Margin="0,465,0,0">
             <Rectangle x:Name="CardSlot" Fill="#FF555555" HorizontalAlignment="Left" Height="32" Margin="38,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="EnterCard"/>
-            <Rectangle Fill="Black" HorizontalAlignment="Left" Height="12" Margin="70,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="176"/>
+            <Rectangle Fill="Black" HorizontalAlignment="Left" Height="12" Margin="70,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="176" MouseUp="EnterCard"/>
         </Grid>
         <Grid x:Name="StartPage" Margin="20,571,-20,-525">
             <Grid.ColumnDefinitions>
@@ -152,9 +152,9 @@
                 <TextBlock x:Name="balance_chk3" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_sav3" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_tfs3" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
-                <RadioButton Content="Checking" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
-                <RadioButton Content="Saving" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top"/>
-                <RadioButton Content="TFSA" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="Checking" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="Saving" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="TFSA" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
             </Grid>
             <Image x:Name="bill5" HorizontalAlignment="Left" Height="57" Margin="306,113,0,0" VerticalAlignment="Top" Width="107" Source="images/bill_5.jpg"/>
             <Image x:Name="bill10" HorizontalAlignment="Left" Height="49" Margin="306,170,0,0" VerticalAlignment="Top" Width="107" Source="images/bill_10.jpg"/>
@@ -177,9 +177,9 @@
             <Button x:Name="plus100" Tag="+100" Content="+" HorizontalAlignment="Left" Margin="423,337,0,0" VerticalAlignment="Top" Width="22" Height="22" RenderTransformOrigin="0.213,0.587" Click="withdrawBillCountClick"/>
             <TextBlock x:Name="numof100" HorizontalAlignment="Left" Margin="457,350,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="22" Height="17"/>
             <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="501,116,0,0" TextWrapping="Wrap" Text="Increment the number of each bill  you want to withdraw." VerticalAlignment="Top" Width="113" Height="69"/>
-            <Button x:Name="button1" Content="Confirm Withdraw" HorizontalAlignment="Left" Margin="492,349,0,0" VerticalAlignment="Top" Width="122" Height="33"/>
-            <TextBlock HorizontalAlignment="Left" Height="31" Margin="520,309,0,0" TextWrapping="Wrap" Text="Total: " VerticalAlignment="Top" Width="63" FontSize="24"/>
-            <TextBlock x:Name="withdraw_total" HorizontalAlignment="Left" Height="31" Margin="588,313,0,0" TextWrapping="Wrap" Text="$0" VerticalAlignment="Top" Width="54" FontSize="18" RenderTransformOrigin="1.498,0.591"/>
+            <Button x:Name="confirm_withdraw" Content="Confirm Withdraw" HorizontalAlignment="Left" Margin="492,349,0,0" VerticalAlignment="Top" Width="122" Height="33" Click="WithdrawConfirmButton"/>
+            <TextBlock HorizontalAlignment="Left" Height="31" Margin="492,306,0,0" TextWrapping="Wrap" Text="Total: " VerticalAlignment="Top" Width="63" FontSize="24"/>
+            <TextBlock x:Name="withdraw_total" HorizontalAlignment="Left" Height="31" Margin="560,311,0,0" TextWrapping="Wrap" Text="$0" VerticalAlignment="Top" Width="54" FontSize="18" RenderTransformOrigin="1.498,0.591"/>
         </Grid>
     </Grid>
 

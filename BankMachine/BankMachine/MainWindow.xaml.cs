@@ -145,6 +145,9 @@ namespace BankMachine
             balance_chk2.Text = "$" + currentAccount.balances[0];
             balance_sav2.Text = "$" + currentAccount.balances[1];
             balance_tfs2.Text = "$" + currentAccount.balances[2];
+            balance_chk3.Text = "$" + currentAccount.balances[0];
+            balance_sav3.Text = "$" + currentAccount.balances[1];
+            balance_tfs3.Text = "$" + currentAccount.balances[2];
         }
 
         public MainWindow()
@@ -155,6 +158,7 @@ namespace BankMachine
             accounts.Add(new Account("1234123412341234", 1234, accsBals));
             accounts.Add(new Account("1111222233334444", 1111, accsBals));
             accounts.Add(new Account("1111111166666666", 1616, accsBals));
+            accounts.Add(new Account("1111111111111111", 1111, accsBals));
 
             //Make all pages except start page hidden
             //StartPage.Visibility = Visibility.Hidden;
@@ -345,7 +349,16 @@ namespace BankMachine
 
         private void EnterCard(object sender, MouseButtonEventArgs e)
         {
-
+            if (currentPage == pages.startPage)
+            {
+                currentAccount = accounts[0]; //Card input will use first account
+                loginViaAcctNum = false;
+                GoToPage(pages.enterPinPage);
+            }
+            else if (currentPage == pages.removeCardPage)
+            {
+                GoToPage(pages.mainMenuPage);
+            }
         }
 
         //Pin Entry Page Event Handler Functions
@@ -460,12 +473,24 @@ namespace BankMachine
             //Set total
             int total = withdrawData.getTotal();
             TextBlock totalTextBlock = (TextBlock)this.FindName("withdraw_total");
-            totalTextBlock.Text = total.ToString();
+            totalTextBlock.Text = "$"+total.ToString();
         }
 
         private void WithdrawPageButton(object sender, RoutedEventArgs e)
         {
             GoToPage(pages.withdrawPage);
+        }
+
+        private void WithdrawConfirmButton(object sender, RoutedEventArgs e)
+        {
+            int acc = 0; // checkings
+            int total = withdrawData.getTotal();
+            if (total > 0 && total < currentAccount.balances[acc])
+            {
+                currentAccount.balances[acc] -= total;
+                updateBalances();
+                GoToPage(pages.actionSuccessfulPage);
+            }
         }
 
         //Deposit Page Methods And Action Listeners
