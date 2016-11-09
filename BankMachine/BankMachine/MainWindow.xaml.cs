@@ -72,7 +72,8 @@ namespace BankMachine
     public partial class MainWindow : Window
     {
         //Variables used by more than one page
-        enum pages { startPage, enterPinPage, removeCardPage, mainMenuPage, depositPage, actionSuccessfulPage, withdrawPage };
+        enum pages { startPage = 0, enterPinPage, removeCardPage, mainMenuPage, depositPage, actionSuccessfulPage, withdrawPage };
+        string[] pageNames = { "StartPage", "EnterPinPage", "RemoveCardPage", "MainMenuPage", "DepositPage", "ActionSuccessfulPage", "WithdrawPage" };
 
         bool loginViaAcctNum = false;
         Account currentAccount = null;
@@ -105,45 +106,31 @@ namespace BankMachine
         //Used to reposition grids and make them visible to make switching easy
         private void GoToPage(pages page)
         {
-            Thickness marg = new Thickness();
-            marg.Left = 0;
-            marg.Right = 0;
-            marg.Top = 0;
-            marg.Bottom = 46;
-            switch (page)
-            {
-                case pages.startPage:
-                    StartPage.Visibility = Visibility.Visible;
-                    StartPage.Margin = marg;
-                    break;
-                case pages.enterPinPage:
-                    EnterPinPage.Visibility = Visibility.Visible;
-                    EnterPinPage.Margin = marg;
-                    break;
-                case pages.removeCardPage:
-                    RemoveCardPage.Visibility = Visibility.Visible;
-                    RemoveCardPage.Margin = marg;
-                    break;
-                case pages.mainMenuPage:
-                    MainMenuPage.Visibility = Visibility.Visible;
-                    MainMenuPage.Margin = marg;
-                    break;
-                case pages.actionSuccessfulPage:
-                    ActionSuccessfulPage.Visibility = Visibility.Visible;
-                    ActionSuccessfulPage.Margin = marg;
-                    break;
-                case pages.depositPage:
-                    DepositPage.Visibility = Visibility.Visible;
-                    DepositPage.Margin = marg;
-                    break;
-                case pages.withdrawPage:
-                    WithdrawPage.Visibility = Visibility.Visible;
-                    WithdrawPage.Margin = marg;
-                    break;
+            Thickness margHide = new Thickness();
+            margHide.Left = -9999;
+            margHide.Right = 9999;
+            margHide.Top = 0;
+            margHide.Bottom = 46;
 
-                default:
-                    break;
+            Thickness margShow = new Thickness();
+            margShow.Left = 0;
+            margShow.Right = 0;
+            margShow.Top = 0;
+            margShow.Bottom = 46;
+
+            //Hide all pages
+            for (int i = 0; i < pageNames.Length; ++i)
+            {
+                Grid hideThis = (Grid)this.FindName(pageNames[i]);
+                hideThis.Visibility = Visibility.Hidden;
+                hideThis.Margin = margHide;
             }
+
+            //Show the page requested
+            Grid nextPage = (Grid)this.FindName(pageNames[(int)page]);
+            nextPage.Visibility = Visibility.Visible;
+            nextPage.Margin = margShow;
+
             currentPage = page;
         }
 
