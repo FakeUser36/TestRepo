@@ -64,8 +64,8 @@
             <Image x:Name="DownArrow_Copy" HorizontalAlignment="Left" Height="149" VerticalAlignment="Top" Width="70" Source="DownArrow.png" Margin="122,262,0,0" Stretch="Fill"/>
         </Grid>
         <Grid x:Name="EnterPinPage" Margin="733,0,-733,46">
-            <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="109" Margin="39,45,0,0" TextWrapping="Wrap" Text="You have successfully entered your card/account number" VerticalAlignment="Top" Width="606" FontSize="36" BorderThickness="0"/>
-            <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="90" Margin="39,154,0,0" TextWrapping="Wrap" Text="Please enter your PIN to proceed and press OK" VerticalAlignment="Top" Width="234" FontSize="24" BorderThickness="0"/>
+            <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="109" Margin="39,45,0,0" TextWrapping="Wrap" Text="You have successfully entered your card/account number" VerticalAlignment="Top" Width="606" FontSize="36" BorderThickness="0" Background="{x:Null}"/>
+            <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="90" Margin="39,154,0,0" TextWrapping="Wrap" Text="Please enter your PIN to proceed and press OK" VerticalAlignment="Top" Width="234" FontSize="24" BorderThickness="0" Background="{x:Null}"/>
             <Grid x:Name="NumPadPinEntry" HorizontalAlignment="Left" Height="230" Margin="495,220,0,0" VerticalAlignment="Top" Width="150" Background="Gray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -96,6 +96,7 @@
                 <Border BorderBrush="#FFFD0404" BorderThickness="3" HorizontalAlignment="Left" Height="44" Margin="145,12,0,0" VerticalAlignment="Top" Width="169"/>
                 <TextBlock x:Name="PinEntryErrorMessage" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="64" Width="132" Text="Your PIN can only be 4 digits long" FontSize="16"/>
             </Grid>
+            <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="29" Margin="495,141,0,0" TextWrapping="Wrap" Text="Please enter pin here" VerticalAlignment="Top" Width="150" BorderThickness="0" Background="{x:Null}" TextAlignment="Center"/>
         </Grid>
         <Grid x:Name="MainMenuPage" Margin="-836,-38,836,84">
             <Grid.RowDefinitions>
@@ -165,13 +166,14 @@
                 <Button Content="0" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToDeposit"/>
                 <Button Content="" HorizontalAlignment="Left" Margin="102,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="2" Grid.Column="0"/>
             </Grid>
+            <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="29" Margin="492,117,0,0" TextWrapping="Wrap" Text="Please enter amount here" VerticalAlignment="Top" Width="150" BorderThickness="0" Background="{x:Null}" TextAlignment="Center"/>
             <TextBox x:Name="DepositEntry" HorizontalAlignment="Left" Height="33" Margin="492,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="20"/>
             <Grid x:Name="DepositError" HorizontalAlignment="Left" Height="62" Margin="302,130,0,0" VerticalAlignment="Top" Width="347" Visibility="Hidden">
                 <Border BorderBrush="#FFFD0000" BorderThickness="3" HorizontalAlignment="Left" Height="42" Margin="185,12,0,0" VerticalAlignment="Top" Width="160"/>
                 <TextBlock x:Name="DepositErrorText" HorizontalAlignment="Left" Margin="0,12,0,0" TextWrapping="Wrap" Text="Please contact an employee to deposit that much at once" VerticalAlignment="Top" Height="40" Width="180"/>
             </Grid>
             <Grid x:Name="DepositPopup" HorizontalAlignment="Left" Height="322" Margin="24,107,0,0" VerticalAlignment="Top" Width="662">
-                <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="323" Margin="12,0,0,-1" VerticalAlignment="Top" Width="640" RenderTransformOrigin="1.215,0.815" Background="White"/>
+                <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="322" Margin="22,4,0,-4" VerticalAlignment="Top" Width="640" RenderTransformOrigin="1.215,0.815" Background="White"/>
                 <TextBlock x:Name="takeyourmoney_message" HorizontalAlignment="Left" Margin="307,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263" Text="Insert your cash or cheque below." Height="98" FontSize="24"/>
                 <Image x:Name="image" HorizontalAlignment="Left" Height="124" Margin="452,202,0,-4" VerticalAlignment="Top" Width="100" Source="DownArrow.png"/>
             </Grid>
@@ -198,7 +200,7 @@
                 <TextBlock x:Name="transaction_complete_message_Copy" HorizontalAlignment="Center" Height="58" Margin="169,10,169,0" TextWrapping="Wrap" Text="Take your money below." VerticalAlignment="Top" Width="255" FontSize="20" TextAlignment="Center"/>
             </Grid>
         </Grid>
-        <Grid x:Name="WithdrawPage" Margin="756,-486,-756,532">
+        <Grid x:Name="WithdrawPage" Margin="610,1108,-610,-1062">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -243,8 +245,8 @@
             <TextBlock x:Name="withdraw_total" HorizontalAlignment="Left" Height="31" Margin="560,311,0,0" TextWrapping="Wrap" Text="$0" VerticalAlignment="Top" Width="54" FontSize="18" RenderTransformOrigin="1.498,0.591"/>
             <Button x:Name="btn_transfer_Copy2" Content="Return to Main Menu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="GoToMainMenu"/>
         </Grid>
-        <Grid x:Name="TransferPage" Height="406" VerticalAlignment="Bottom" Margin="568,0,-568,-972">
-            <TextBlock x:Name="almost_successful_title" HorizontalAlignment="Left" Height="62" Margin="76,34,0,0" TextWrapping="Wrap" Text="Transfer Money" VerticalAlignment="Top" Width="517" FontSize="36" TextAlignment="Center"/>
+        <Grid x:Name="TransferPage" Height="460" VerticalAlignment="Bottom" Margin="1311,0,-1311,-1062">
+            <TextBlock x:Name="almost_successful_title" HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="Transfer Money" VerticalAlignment="Top" Width="517" FontSize="36" TextAlignment="Center"/>
             <Grid HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="201" Margin="0,233,0,0" RenderTransformOrigin="0.61,0.455">
                 <TextBlock x:Name="balance_chk4" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_sav4" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
@@ -304,6 +306,7 @@
                 <Border BorderBrush="Red" BorderThickness="3" HorizontalAlignment="Left" Height="44" Margin="154,-2,0,0" VerticalAlignment="Top" Width="159"/>
                 <TextBlock x:Name="TransferEntryErrorText" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a valid amount to transfer" Width="149" Margin="0,0,0,37"/>
             </Grid>
+            <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="29" Margin="497,63,0,0" TextWrapping="Wrap" Text="Please enter amount here" VerticalAlignment="Top" Width="150" BorderThickness="0" Background="{x:Null}" TextAlignment="Center"/>
         </Grid>
     </Grid>
 
