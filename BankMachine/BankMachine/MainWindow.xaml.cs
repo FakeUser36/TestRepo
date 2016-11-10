@@ -503,6 +503,11 @@ namespace BankMachine
             string diffTag = buttonTag[0].ToString();
             int diff = (diffTag == "-") ? -1 : 1;
 
+            //Remove error frame if error solved
+            if (diffTag == "+")
+                errorWithdraw0Error.Visibility = Visibility.Hidden;
+            errorWithdraw9Error.Visibility = Visibility.Hidden;
+
             TextBlock billCountTextBlock = (TextBlock)this.FindName("numof"+billValue.ToString());
 
             //Set count of bills
@@ -533,6 +538,10 @@ namespace BankMachine
             saving.IsChecked = false;
             tfsa.IsChecked = false;
             currentSelectedAccount = -1;
+
+            //hide errors
+            errorWithdraw0Error.Visibility = Visibility.Hidden;
+            errorWithdraw9Error.Visibility = Visibility.Hidden;
         }
 
         private void WithdrawConfirmButton(object sender, RoutedEventArgs e)
@@ -544,9 +553,15 @@ namespace BankMachine
             }
 
             int total = withdrawData.getTotal();
-            if (total > 0 && total < currentAccount.balances[currentSelectedAccount])
+            if (total > 0)
             {
-                performWithdrawal(total);
+                if (total < currentAccount.balances[currentSelectedAccount])
+                    performWithdrawal(total);
+                else
+                    errorWithdraw9Error.Visibility = Visibility.Visible;
+            } else
+            {
+                errorWithdraw0Error.Visibility = Visibility.Visible;
             }
         }
 
