@@ -66,6 +66,10 @@ namespace BankMachine
                 total += this.billCounts[i] * this.values[i];
             return total;
         }
+        public int[] getValues()
+        {
+            return values;
+        }
     }
 
     public partial class MainWindow : Window
@@ -477,10 +481,29 @@ namespace BankMachine
 
             //Set total
             int total = withdrawData.getTotal();
-            TextBlock totalTextBlock = (TextBlock)this.FindName("withdraw_total");
-            totalTextBlock.Text = "$"+total.ToString();
+            withdraw_total.Text = "$"+total.ToString();
         }
 
+        //Clear the WithdrawPage for the next withdraw
+        private void withdrawPageReset()
+        {
+            //unset data
+            withdrawData.reset();
+
+            //unset texts
+            for (int i = 0; i < 5; ++i)
+            {
+                TextBlock numof = (TextBlock)FindName("numof" + withdrawData.getValues()[i].ToString());
+                numof.Text = "0";
+            }
+            withdraw_total.Text = "$0";
+
+            //unset radios
+            checking.IsChecked = false;
+            saving.IsChecked = false;
+            tfsa.IsChecked = false;
+            currentSelectedAccount = -1;
+        }
 
         private void WithdrawConfirmButton(object sender, RoutedEventArgs e)
         {
@@ -500,10 +523,11 @@ namespace BankMachine
         private void performWithdrawal(double total)
         {
             currentAccount.balances[currentSelectedAccount] -= total;
-            currentSelectedAccount = -1;
             updateBalances();
             WithdrawalSelectError.Visibility = Visibility.Hidden;
             //WithdrawalError.Visibility = Visibility.Hidden;
+            ActionSuccessfulUpdate("Successfully withdrawn $" + total + ".");
+            withdrawPageReset();
             GoToPage(pages.actionSuccessfulPage);
         }
 
@@ -511,6 +535,13 @@ namespace BankMachine
         private void GoToMainMenu(object sender, RoutedEventArgs e)
         {
             GoToPage(pages.mainMenuPage);
+        }
+
+        //Update the action successful page with a message before gong to it.
+        private void ActionSuccessfulUpdate(string message)
+        {
+            TextBlock previousTransactionTextBlock = (TextBlock)this.FindName("transaction_complete_message");
+            previousTransactionTextBlock.Text = message;
         }
 
         //Deposit Page Methods And Action Listeners
