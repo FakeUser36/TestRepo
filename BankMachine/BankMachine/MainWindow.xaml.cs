@@ -77,13 +77,14 @@ namespace BankMachine
     public partial class MainWindow : Window
     {
         //Variables used by more than one page
-        enum pages { startPage = 0, enterPinPage, removeCardPage, mainMenuPage, depositPage, actionSuccessfulPage, withdrawPage, almostSuccessfulPage };
-        string[] pageNames = { "StartPage", "EnterPinPage", "RemoveCardPage", "MainMenuPage", "DepositPage", "ActionSuccessfulPage", "WithdrawPage", "AlmostSuccessfulPage" };
+        enum pages { startPage = 0, enterPinPage, removeCardPage, mainMenuPage, depositPage, actionSuccessfulPage, withdrawPage, transferPage };
+        string[] pageNames = { "StartPage", "EnterPinPage", "RemoveCardPage", "MainMenuPage", "DepositPage", "ActionSuccessfulPage", "WithdrawPage", "TransferPage" };
 
         bool loginViaAcctNum = false;
         Account currentAccount = null;
         pages currentPage;
         int currentSelectedAccount = -1;
+        int transferAccount = -1;
 
         //Test accounts
         List<Account> accounts = new List<Account>();
@@ -118,6 +119,7 @@ namespace BankMachine
             //bad coding
             resetDeposit();
             TransactionForWithdraw.Visibility = Visibility.Hidden;
+            withdrawPageReset();
 
             Thickness margHide = new Thickness();
             margHide.Left = -9999;
@@ -183,6 +185,9 @@ namespace BankMachine
             WithdrawPage.Visibility = Visibility.Hidden;
             DepositPopup.Visibility = Visibility.Hidden;
             TransactionForWithdraw.Visibility = Visibility.Hidden;
+            TransferPage.Visibility = Visibility.Hidden;
+            TransferToSelectError.Visibility = Visibility.Hidden;
+            TransferFromSelectError.Visibility = Visibility.Hidden;
             GoToPage(pages.startPage);
         }
 
@@ -460,6 +465,12 @@ namespace BankMachine
             GoToPage(pages.withdrawPage);
         }
 
+
+        private void TransferPageButton(object sender, RoutedEventArgs e)
+        {
+            GoToPage(pages.transferPage);
+        }
+
         private void btn_logout_Click(object sender, RoutedEventArgs e)
         {
             Clear_Click(sender, e);
@@ -653,7 +664,8 @@ namespace BankMachine
         private void RadioButtonChecked(object sender, RoutedEventArgs e)
         {
             DepositSelectError.Visibility = Visibility.Hidden;
-            
+            WithdrawalSelectError.Visibility = Visibility.Hidden;
+
             string button = ((RadioButton)sender).Content.ToString();
             switch (button){
                 case "Checking":
@@ -681,6 +693,27 @@ namespace BankMachine
                 GoToPage(pages.mainMenuPage);
             }
         }
+
+        //Transfer page methods
+        private void RadioButtonChecked2(object sender, RoutedEventArgs e)
+        {
+            string button = ((RadioButton)sender).Content.ToString();
+            switch (button)
+            {
+                case "Checking":
+                    transferAccount = 0;
+                    break;
+                case "Saving":
+                    transferAccount = 1;
+                    break;
+                case "TFSA":
+                    transferAccount = 2;
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }
 
