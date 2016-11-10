@@ -105,7 +105,7 @@
             <TextBlock x:Name="MainMenu_textBox2" HorizontalAlignment="Left" Height="44" Margin="76,142,0,0" TextWrapping="Wrap" Text="Actions" VerticalAlignment="Top" Width="126" FontSize="24"/>
             <Button x:Name="btn_withdraw" Content="Withdraw" HorizontalAlignment="Left" Margin="76,191,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="WithdrawPageButton"/>
             <Button x:Name="btn_deposit" Content="Deposit" HorizontalAlignment="Left" Margin="76,260,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="DepositButton"/>
-            <Button x:Name="btn_transfer" Content="Transfer" HorizontalAlignment="Left" Margin="76,328,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="WithdrawPageButton"/>
+            <Button x:Name="btn_transfer" Content="Transfer" HorizontalAlignment="Left" Margin="76,328,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="TransferPageButton"/>
             <TextBlock x:Name="mm_textBlock" HorizontalAlignment="Left" Margin="90,226,0,0" TextWrapping="Wrap" Text="Withdraw money from an account." VerticalAlignment="Top"/>
             <TextBlock x:Name="mm_textBlock_Copy" HorizontalAlignment="Left" Margin="90,295,0,0" TextWrapping="Wrap" Text="Deposit money to an account." VerticalAlignment="Top"/>
             <TextBlock x:Name="mm_textBlock_Copy1" HorizontalAlignment="Left" Margin="90,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"><Run Text="Transfer funds between accounts, to other people, or pay bills."/><LineBreak/><Run/></TextBlock>
@@ -243,7 +243,7 @@
             <TextBlock x:Name="withdraw_total" HorizontalAlignment="Left" Height="31" Margin="560,311,0,0" TextWrapping="Wrap" Text="$0" VerticalAlignment="Top" Width="54" FontSize="18" RenderTransformOrigin="1.498,0.591"/>
             <Button x:Name="btn_transfer_Copy2" Content="Return to Main Menu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="GoToMainMenu"/>
         </Grid>
-        <Grid x:Name="TransferPage" Height="406" VerticalAlignment="Bottom" Margin="599,0,-599,-952">
+        <Grid x:Name="TransferPage" Height="406" VerticalAlignment="Bottom" Margin="568,0,-568,-972">
             <TextBlock x:Name="almost_successful_title" HorizontalAlignment="Left" Height="62" Margin="76,34,0,0" TextWrapping="Wrap" Text="Transfer Money" VerticalAlignment="Top" Width="517" FontSize="36" TextAlignment="Center"/>
             <Grid HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="201" Margin="0,233,0,0" RenderTransformOrigin="0.61,0.455">
                 <TextBlock x:Name="balance_chk4" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
@@ -257,15 +257,15 @@
                 <TextBlock x:Name="balance_chk5" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_sav5" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_tfs5" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
-                <RadioButton x:Name="checking3" Content="Checking" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked2" />
-                <RadioButton x:Name="saving3" Content="Saving" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked2"/>
-                <RadioButton x:Name="tfsa3" Content="TFSA" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked2"/>
+                <RadioButton x:Name="checking3" Content="Checking" GroupName="transfer_acc" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked2" />
+                <RadioButton x:Name="saving3" Content="Saving" GroupName="transfer_acc" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked2"/>
+                <RadioButton x:Name="tfsa3" Content="TFSA" GroupName="transfer_acc" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked2"/>
                 <Grid x:Name="TransferToSelectError" HorizontalAlignment="Left" Height="162" Margin="0,0,0,-28" VerticalAlignment="Top" Width="136">
                     <Border BorderBrush="#FFFB0000" BorderThickness="3" HorizontalAlignment="Left" Height="93" Margin="-4,10,-55,0" VerticalAlignment="Top" Width="195"/>
-                    <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="0,108,0,0" TextWrapping="Wrap" Text="Please select an account to transfer funds to." VerticalAlignment="Top" Height="54" Width="136"/>
+                    <TextBlock x:Name="TransferToSelectErrorText" HorizontalAlignment="Left" Margin="0,108,-128,0" TextWrapping="Wrap" Text="Please select an account to transfer funds to." VerticalAlignment="Top" Height="54" Width="264"/>
                 </Grid>
             </Grid>
-            <Grid x:Name="NumPadPinEntry_Copy1" HorizontalAlignment="Left" Height="228" Margin="536,167,0,0" VerticalAlignment="Top" Width="150" Background="Gray">
+            <Grid x:Name="NumPadPinEntry_Copy1" HorizontalAlignment="Left" Height="228" Margin="497,151,0,0" VerticalAlignment="Top" Width="150" Background="Gray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -274,31 +274,35 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Button Content="1" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToDeposit"/>
-                <Button Content="2" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToDeposit"/>
-                <Button Content="3" Margin="103,10,0,0" VerticalAlignment="Top" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToDeposit" HorizontalAlignment="Left" Width="41"/>
-                <Button Content="4" HorizontalAlignment="Left" Margin="8,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Column="0" Click="enterNumToDeposit"/>
-                <Button Content="5" HorizontalAlignment="Left" Margin="55,53,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Column="0" Click="enterNumToDeposit"/>
-                <Button Content="6" HorizontalAlignment="Left" Margin="102,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Column="0" Click="enterNumToDeposit"/>
-                <Button Content="7" HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToDeposit"/>
-                <Button Content="8" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToDeposit"/>
-                <Button Content="9" HorizontalAlignment="Left" Margin="102,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToDeposit"/>
-                <Button x:Name="Clear1" Content="    x&#xA;Clear" HorizontalAlignment="Left" Margin="8,45,0,-33" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FFFF0A0A" Click="DepositClear"/>
-                <Button x:Name="Back3" Content="  &lt;&#xA;Back" HorizontalAlignment="Left" Margin="55,45,0,-34" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="2" Click="DepositEnrtyBack" Background="#FFF5E00B"/>
-                <Button x:Name="OK3" Content="  √   &#xA; OK" HorizontalAlignment="Left" Margin="104,45,0,-35" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FF36EE00" Click="DepositConfirmButton"/>
-                <Button Content="." HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToDeposit"/>
-                <Button Content="0" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="1" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToTransfer"/>
+                <Button Content="2" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToTransfer"/>
+                <Button Content="3" Margin="103,10,0,0" VerticalAlignment="Top" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToTransfer" HorizontalAlignment="Left" Width="41"/>
+                <Button Content="4" HorizontalAlignment="Left" Margin="8,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Column="0" Click="enterNumToTransfer"/>
+                <Button Content="5" HorizontalAlignment="Left" Margin="55,53,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Column="0" Click="enterNumToTransfer"/>
+                <Button Content="6" HorizontalAlignment="Left" Margin="102,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Column="0" Click="enterNumToTransfer"/>
+                <Button Content="7" HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToTransfer"/>
+                <Button Content="8" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToTransfer"/>
+                <Button Content="9" HorizontalAlignment="Left" Margin="102,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToTransfer"/>
+                <Button x:Name="Clear1" Content="    x&#xA;Clear" HorizontalAlignment="Left" Margin="8,45,0,-33" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FFFF0A0A" Click="TransferClear"/>
+                <Button x:Name="Back3" Content="  &lt;&#xA;Back" HorizontalAlignment="Left" Margin="55,45,0,-34" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="2" Click="TransferEntryBack" Background="#FFF5E00B"/>
+                <Button x:Name="OK3" Content="  √   &#xA; OK" HorizontalAlignment="Left" Margin="104,45,0,-35" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FF36EE00" Click="TransferConfirmButton"/>
+                <Button Content="." HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToTransfer"/>
+                <Button Content="0" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToTransfer"/>
                 <Button Content="" HorizontalAlignment="Left" Margin="102,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="2" Grid.Column="0"/>
             </Grid>
-            <TextBox x:Name="TransferEntry" HorizontalAlignment="Left" Height="33" Margin="536,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="20"/>
+            <TextBox x:Name="TransferEntry" HorizontalAlignment="Left" Height="33" Margin="497,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="20"/>
             <TextBlock HorizontalAlignment="Left" Height="33" Margin="0,194,0,0" TextWrapping="Wrap" Text="Money From" VerticalAlignment="Top" Width="146" FontSize="24"/>
             <TextBlock HorizontalAlignment="Left" Height="33" Margin="211,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" FontSize="24" Text="Money To"/>
-            <TextBlock HorizontalAlignment="Left" Height="35" Margin="0,159,0,0" TextWrapping="Wrap" Text="Select An Account to Transfer :" VerticalAlignment="Top" Width="353" FontSize="24"/>
+            <TextBlock HorizontalAlignment="Left" Height="35" Margin="0,136,0,0" TextWrapping="Wrap" Text="Select An Account to Transfer :" VerticalAlignment="Top" Width="353" FontSize="24"/>
             <Button x:Name="btn_logout1_Copy" Content="Logout" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click" RenderTransformOrigin="0.475,0"/>
             <Button x:Name="btn_transfer_Copy" Content="Return to Main Menu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="GoToMainMenu"/>
             <Grid x:Name="TransferFromSelectError" HorizontalAlignment="Left" Height="162" Margin="10,233,0,0" VerticalAlignment="Top" Width="136">
                 <Border BorderBrush="#FFFB0000" BorderThickness="3" HorizontalAlignment="Left" Height="93" Margin="-4,10,-55,0" VerticalAlignment="Top" Width="195"/>
-                <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,108,0,0" TextWrapping="Wrap" Text="Please select an account to transfer funds from." VerticalAlignment="Top" Height="54" Width="136"/>
+                <TextBlock x:Name="TransferFromSelectErrorText" HorizontalAlignment="Left" Margin="0,108,0,0" TextWrapping="Wrap" Text="Please select an account to transfer funds from." VerticalAlignment="Top" Height="54" Width="136"/>
+            </Grid>
+            <Grid x:Name="TransferEntryError" HorizontalAlignment="Left" Height="79" Margin="338,97,0,0" VerticalAlignment="Top" Width="319">
+                <Border BorderBrush="Red" BorderThickness="3" HorizontalAlignment="Left" Height="44" Margin="154,-2,0,0" VerticalAlignment="Top" Width="159"/>
+                <TextBlock x:Name="TransferEntryErrorText" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Please enter a valid amount to transfer" Width="149" Margin="0,0,0,37"/>
             </Grid>
         </Grid>
     </Grid>

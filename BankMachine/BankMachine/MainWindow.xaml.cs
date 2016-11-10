@@ -118,6 +118,7 @@ namespace BankMachine
         {
             //bad coding
             resetDeposit();
+            resetTransfer();
             TransactionForWithdraw.Visibility = Visibility.Hidden;
             withdrawPageReset();
 
@@ -163,6 +164,12 @@ namespace BankMachine
             balance_chk3.Text = currentAccount.balances[0].ToString("c");
             balance_sav3.Text = currentAccount.balances[1].ToString("c");
             balance_tfs3.Text = currentAccount.balances[2].ToString("c");
+            balance_chk4.Text = currentAccount.balances[0].ToString("c");
+            balance_sav4.Text = currentAccount.balances[1].ToString("c");
+            balance_tfs4.Text = currentAccount.balances[2].ToString("c");
+            balance_chk5.Text = currentAccount.balances[0].ToString("c");
+            balance_sav5.Text = currentAccount.balances[1].ToString("c");
+            balance_tfs5.Text = currentAccount.balances[2].ToString("c");
         }
 
         public MainWindow()
@@ -188,6 +195,7 @@ namespace BankMachine
             TransferPage.Visibility = Visibility.Hidden;
             TransferToSelectError.Visibility = Visibility.Hidden;
             TransferFromSelectError.Visibility = Visibility.Hidden;
+            TransferEntryError.Visibility = Visibility.Hidden;
             GoToPage(pages.startPage);
         }
 
@@ -567,7 +575,9 @@ namespace BankMachine
             previousTransactionTextBlock.Text = message;
         }
 
-        //Deposit Page Methods And Action Listeners
+        /* 
+         * Deposit Page Methods And Action Listeners
+        */
 
         //This method is called whenever the user presses a key on the deposit page
         private void enterNumToDeposit(object sender, RoutedEventArgs e)
@@ -665,6 +675,7 @@ namespace BankMachine
         {
             DepositSelectError.Visibility = Visibility.Hidden;
             WithdrawalSelectError.Visibility = Visibility.Hidden;
+            TransferFromSelectError.Visibility = Visibility.Hidden;
 
             string button = ((RadioButton)sender).Content.ToString();
             switch (button){
@@ -697,6 +708,8 @@ namespace BankMachine
         //Transfer page methods
         private void RadioButtonChecked2(object sender, RoutedEventArgs e)
         {
+            TransferToSelectError.Visibility = Visibility.Hidden;
+
             string button = ((RadioButton)sender).Content.ToString();
             switch (button)
             {
@@ -712,6 +725,138 @@ namespace BankMachine
                 default:
                     break;
             }
+        }
+
+        //This method is called whenever the user presses a key on the deposit page
+        private void enterNumToTransfer(object sender, RoutedEventArgs e)
+        {
+            TransferEntryError.Visibility = Visibility.Hidden;
+            string num = (((Button)sender).Content.ToString());
+            if (TransferEntry.Text.Length < 16)
+            {
+                if (num == "." & TransferEntry.Text.Contains("."))
+                {
+                    TransferEntryErrorText.Text = "You may not have more than one decimal point.";
+                    TransferEntryError.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                string[] nums = TransferEntry.Text.Split('.');
+
+                if (nums.Length > 1 && nums[1].Length > 1)
+                {
+                    TransferEntryErrorText.Text = "You may not transfer fractions of cents.";
+                    TransferEntryError.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                TransferEntry.Text += num;
+            }
+            else
+            {
+                TransferEntryErrorText.Text = "Please contact an employee to transfer that much at once.";
+                TransferEntryError.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TransferConfirmButton(object sender, RoutedEventArgs e)
+        {
+            TransferToSelectError.Visibility = Visibility.Hidden;
+            TransferFromSelectError.Visibility = Visibility.Hidden; 
+            TransferEntryError.Visibility = Visibility.Hidden;
+
+
+            if (currentSelectedAccount == -1)
+            {
+                TransferFromSelectErrorText.Text = "Please select an account to transfer funds from.";
+                TransferFromSelectError.Visibility = Visibility.Visible; 
+                return;
+            }
+            else if (transferAccount == -1)
+            {
+                TransferToSelectErrorText.Text="Please select an account to transfer funds from.";
+                TransferToSelectError.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if (TransferEntry.Text.Length < 1)
+            {
+                TransferEntryErrorText.Text = "Please enter an amount to deposit.";
+                TransferEntryError.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if(currentSelectedAccount==transferAccount){
+                TransferToSelectErrorText.Text="The account you want to transfer money to must be different from the account you are taking money from.";
+                TransferToSelectError.Visibility=Visibility.Visible;
+                TransferFromSelectErrorText.Text = "";
+                TransferFromSelectError.Visibility = Visibility.Visible;
+
+                return;
+            }
+
+            double val;
+
+            if (Double.TryParse(TransferEntry.Text, out val))
+            {
+                if (val <= currentAccount.balances[currentSelectedAccount])
+                {
+                    performTransfer(val);
+                }
+                else {
+                    TransferFromSelectErrorText.Text = "You do not have sufficent funds to transfer this amount.";
+                    TransferFromSelectError.Visibility = Visibility.Visible;
+                }
+                
+            }
+            else
+            {
+                //We should hopefully never get here
+                TransferEntryErrorText.Text = "Please enter an amount to deposit. BAD";
+                TransferEntryError.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void resetTransfer()
+        {
+            TransferEntry.Text = "";
+            TransferEntryError.Visibility = Visibility.Hidden;
+            TransferFromSelectError.Visibility = Visibility.Hidden;
+            TransferToSelectError.Visibility = Visibility.Hidden;
+            checking1.IsChecked = false;
+            saving1.IsChecked = false;
+            tfsa1.IsChecked = false;
+            checking3.IsChecked = false;
+            saving3.IsChecked = false;
+            tfsa3.IsChecked = false;
+            currentSelectedAccount = -1;
+            transferAccount = -1;
+        }
+
+        private void TransferClear(object sender, RoutedEventArgs e)
+        {
+            TransferEntry.Text = "";
+        }
+
+        private void TransferEntryBack(object sender, RoutedEventArgs e)
+        {
+            TransferEntryError.Visibility = Visibility.Hidden;
+            if (TransferEntry.Text.Length > 1)
+            {
+                TransferEntry.Text = TransferEntry.Text.Substring(0, TransferEntry.Text.Length - 1);
+            }
+            else
+            {
+                TransferEntry.Text = "";
+            }
+        }
+
+        private void performTransfer(double val) {
+            currentAccount.balances[transferAccount] += val;
+            currentAccount.balances[currentSelectedAccount] -= val;
+            updateBalances();
+            ActionSuccessfulUpdate("Successfully transfered " + val.ToString("c") + ".");
+            GoToPage(pages.actionSuccessfulPage);
         }
 
     }
