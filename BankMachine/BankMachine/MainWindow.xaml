@@ -6,6 +6,7 @@
         <Grid x:Name="Hardware" Margin="0,465,0,0">
             <Rectangle x:Name="CardSlot" Fill="#FF555555" HorizontalAlignment="Left" Height="32" Margin="38,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="EnterCard"/>
             <Rectangle Fill="Black" HorizontalAlignment="Left" Height="12" Margin="70,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="176" MouseUp="EnterCard"/>
+            <Rectangle x:Name="CashSlot" HorizontalAlignment="Left" Height="32" Margin="414,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="EnterCard" Fill="#FF919191"/>
         </Grid>
         <Grid x:Name="StartPage" Margin="20,571,-20,-525">
             <Grid.ColumnDefinitions>
@@ -29,7 +30,7 @@
                 <TextBox x:Name="PinEntry1" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="63,32,0,0" Text="----" TextAlignment="Center"/>
                 <TextBox x:Name="PinEntry2" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="119,32,0,0" Text="----" TextAlignment="Center"/>
                 <TextBox x:Name="PinEntry3" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" FontSize="20" Margin="175,32,0,0" Text="----" TextAlignment="Center"/>
-                <Grid x:Name="NumPad" HorizontalAlignment="Left" Height="189" Margin="41,88,0,0" VerticalAlignment="Top" Width="151" Background="Gray">
+                <Grid x:Name="NumPad" HorizontalAlignment="Left" Height="229" Margin="38,102,0,0" VerticalAlignment="Top" Width="151" Background="Gray">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="80*"/>
                         <RowDefinition Height="109*"/>
@@ -40,12 +41,15 @@
                     <Button Content="4" HorizontalAlignment="Left" Margin="8,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.RowSpan="2" Click="enterNumToEntry"/>
                     <Button Content="5" HorizontalAlignment="Left" Margin="55,53,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.RowSpan="2" Click="enterNumToEntry"/>
                     <Button Content="6" HorizontalAlignment="Left" Margin="101,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.RowSpan="2" Click="enterNumToEntry"/>
-                    <Button Content="7" HorizontalAlignment="Left" Margin="8,16,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Click="enterNumToEntry"/>
-                    <Button Content="8" HorizontalAlignment="Left" Margin="55,16,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="1" Click="enterNumToEntry"/>
-                    <Button Content="9" HorizontalAlignment="Left" Margin="101,16,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Click="enterNumToEntry"/>
-                    <Button x:Name="Clear" Content="    x&#xA;Clear" HorizontalAlignment="Left" Margin="8,59,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Background="#FFFF0A0A" Click="Clear_Click"/>
-                    <Button x:Name="Back" Content="  &lt;&#xD;&#xA;Back" HorizontalAlignment="Left" Margin="55,59,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="1" Click="Back_Click" Background="#FFF5E00B"/>
-                    <Button x:Name="OK" Content="  √   &#xD;&#xA; OK" HorizontalAlignment="Left" Margin="101,59,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Background="#FF36EE00" Click="OK_Click"/>
+                    <Button Content="7" HorizontalAlignment="Left" Margin="8,96,0,0" VerticalAlignment="Top" Width="42" Height="38" Click="enterNumToEntry" Grid.RowSpan="2"/>
+                    <Button Content="8" HorizontalAlignment="Left" Margin="55,96,0,0" VerticalAlignment="Top" Width="41" Height="38" Click="enterNumToEntry" Grid.RowSpan="2"/>
+                    <Button Content="9" HorizontalAlignment="Left" Margin="101,96,0,0" VerticalAlignment="Top" Width="42" Height="38" Click="enterNumToEntry" Grid.RowSpan="2"/>
+                    <Button x:Name="Clear" Content="    x&#xA;Clear" HorizontalAlignment="Left" Margin="8,85,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Background="#FFFF0A0A" Click="Clear_Click"/>
+                    <Button x:Name="Back" Content="  &lt;&#xD;&#xA;Back" HorizontalAlignment="Left" Margin="55,85,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="1" Click="Back_Click" Background="#FFF5E00B"/>
+                    <Button x:Name="OK" Content="  √   &#xD;&#xA; OK" HorizontalAlignment="Left" Margin="101,85,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Background="#FF36EE00" Click="OK_Click"/>
+                    <Button Content="" HorizontalAlignment="Left" Margin="8,42,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToPin"/>
+                    <Button Content="0" HorizontalAlignment="Left" Margin="55,42,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToEntry"/>
+                    <Button Content="" HorizontalAlignment="Left" Margin="101,42,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToPin"/>
                 </Grid>
                 <TextBox x:Name="AccNumError" HorizontalAlignment="Left" Height="57" Margin="10,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="212" BorderBrush="#FFFB0101" BorderThickness="3" Visibility="Hidden"/>
             </Grid>
@@ -56,10 +60,10 @@
             <Image x:Name="Card2" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="73" Source="Card.png" Margin="119,181,0,0"/>
             <Image x:Name="DownArrow_Copy" HorizontalAlignment="Left" Height="149" VerticalAlignment="Top" Width="70" Source="DownArrow.png" Margin="122,262,0,0" Stretch="Fill"/>
         </Grid>
-        <Grid x:Name="EnterPinPage" Margin="739,46,-739,0">
+        <Grid x:Name="EnterPinPage" Margin="733,0,-733,46">
             <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="109" Margin="39,45,0,0" TextWrapping="Wrap" Text="You have successfully entered your card/account number" VerticalAlignment="Top" Width="606" FontSize="36" BorderThickness="0"/>
             <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="90" Margin="39,154,0,0" TextWrapping="Wrap" Text="Please enter your PIN to proceed and press OK" VerticalAlignment="Top" Width="234" FontSize="24" BorderThickness="0"/>
-            <Grid x:Name="NumPadPinEntry" HorizontalAlignment="Left" Height="188" Margin="495,262,0,0" VerticalAlignment="Top" Width="150" Background="Gray">
+            <Grid x:Name="NumPadPinEntry" HorizontalAlignment="Left" Height="230" Margin="495,220,0,0" VerticalAlignment="Top" Width="150" Background="Gray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -77,11 +81,14 @@
                 <Button Content="7" HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToPin"/>
                 <Button Content="8" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToPin"/>
                 <Button Content="9" HorizontalAlignment="Left" Margin="102,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToPin"/>
-                <Button x:Name="Cancel1" Content="    x&#xA;Cancel" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FFFF0A0A" Click="PinEntryCancel"/>
-                <Button x:Name="Back1" Content="  &lt;&#xA;Back" HorizontalAlignment="Left" Margin="55,4,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="2" Click="EnterPinBack" Background="#FFF5E00B"/>
-                <Button x:Name="OK1" Content="  √   &#xA; OK" HorizontalAlignment="Left" Margin="101,45,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="1" Background="#FF36EE00" Click="EnterPinOK" Grid.RowSpan="2"/>
+                <Button x:Name="Cancel1" Content="    x&#xA;Cancel" HorizontalAlignment="Left" Margin="10,46,0,-21" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FFFF0A0A" Click="PinEntryCancel"/>
+                <Button x:Name="Back1" Content="  &lt;&#xA;Back" HorizontalAlignment="Left" Margin="55,46,0,-21" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="2" Click="EnterPinBack" Background="#FFF5E00B"/>
+                <Button x:Name="OK1" Content="  √   &#xA; OK" HorizontalAlignment="Left" Margin="101,46,0,-21" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FF36EE00" Click="EnterPinOK"/>
+                <Button Content="" HorizontalAlignment="Left" Margin="8,4,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToPin"/>
+                <Button Content="0" HorizontalAlignment="Left" Margin="55,4,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToPin"/>
+                <Button Content="" HorizontalAlignment="Left" Margin="101,4,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToPin"/>
             </Grid>
-            <TextBox x:Name="PinEntry" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="20" Margin="495,210,0,0" TextAlignment="Center"/>
+            <TextBox x:Name="PinEntry" HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="20" Margin="495,168,0,0" TextAlignment="Center"/>
             <Grid x:Name="PinErrorInfo" HorizontalAlignment="Left" Height="64" Margin="340,193,0,0" VerticalAlignment="Top" Width="328" Visibility="Hidden">
                 <Border BorderBrush="#FFFD0404" BorderThickness="3" HorizontalAlignment="Left" Height="44" Margin="145,12,0,0" VerticalAlignment="Top" Width="169"/>
                 <TextBlock x:Name="PinEntryErrorMessage" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="64" Width="132" Text="Your PIN can only be 4 digits long" FontSize="16"/>
@@ -110,26 +117,61 @@
                 <TextBlock x:Name="balance_tfs" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
             </Grid>
         </Grid>
-        <Grid x:Name="DepositPage" Margin="-8,-561,8,607">
+        <Grid x:Name="DepositPage" Margin="0,0,0,46">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock x:Name="MainMenu_textBox3" HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="Deposit Money" VerticalAlignment="Top" Width="517" FontSize="36" TextAlignment="Center"/>
             <TextBlock x:Name="MainMenu_textBox2_Copy1" HorizontalAlignment="Left" Height="31" Margin="40,146,0,0" TextWrapping="Wrap" Text="Select An Account" VerticalAlignment="Top" Width="198" FontSize="24"/>
-            <Button x:Name="btn_logout1" Content="Logout" HorizontalAlignment="Left" Margin="291,407,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
+            <Button x:Name="btn_logout1" Content="Logout" HorizontalAlignment="Left" Margin="286,430,0,-33" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
             <Grid HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="201" Margin="37,182,0,0" RenderTransformOrigin="0.61,0.455">
                 <TextBlock x:Name="balance_chk1" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_sav1" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_tfs1" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
-                <RadioButton Content="Checking" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
-                <RadioButton Content="Saving" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top"/>
-                <RadioButton Content="TFSA" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="checking1" Content="Checking" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked"/>
+                <RadioButton x:Name="saving1" Content="Saving" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked"/>
+                <RadioButton x:Name="tfsa1" Content="TFSA" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked"/>
+                <Grid x:Name="DepositSelectError" HorizontalAlignment="Left" Height="114" Margin="0,10,0,0" VerticalAlignment="Top" Width="181" Visibility="Hidden">
+                    <Border BorderBrush="Red" BorderThickness="3" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="122"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="0,81,0,0" TextWrapping="Wrap" Text="Please select an account." VerticalAlignment="Top" Width="137" BorderThickness="0"/>
+                </Grid>
+            </Grid>
+            <Button x:Name="btn_transfer_Copy3" Content="Return to Main Menu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="GoToMainMenu"/>
+            <Grid x:Name="NumPadPinEntry_Copy" HorizontalAlignment="Left" Height="228" Margin="492,200,0,0" VerticalAlignment="Top" Width="150" Background="Gray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Content="1" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="2" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="3" Margin="103,10,0,0" VerticalAlignment="Top" Height="38" Grid.Row="0" Grid.Column="0" Click="enterNumToDeposit" HorizontalAlignment="Left" Width="41"/>
+                <Button Content="4" HorizontalAlignment="Left" Margin="8,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="5" HorizontalAlignment="Left" Margin="55,53,0,0" VerticalAlignment="Top" Width="41" Height="38" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="6" HorizontalAlignment="Left" Margin="102,53,0,0" VerticalAlignment="Top" Width="42" Height="38" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="7" HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="8" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="9" HorizontalAlignment="Left" Margin="102,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="1" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button x:Name="Clear2" Content="    x&#xA;Clear" HorizontalAlignment="Left" Margin="8,45,0,-33" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FFFF0A0A" Click="DepositClear"/>
+                <Button x:Name="Back2" Content="  &lt;&#xA;Back" HorizontalAlignment="Left" Margin="55,45,0,-34" VerticalAlignment="Top" Width="41" Height="38" Grid.Row="2" Click="DepositEnrtyBack" Background="#FFF5E00B"/>
+                <Button x:Name="OK2" Content="  √   &#xA; OK" HorizontalAlignment="Left" Margin="104,45,0,-35" VerticalAlignment="Top" Width="42" Height="38" Grid.Row="2" Background="#FF36EE00" Click="DepositConfirmButton"/>
+                <Button Content="." HorizontalAlignment="Left" Margin="8,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="0" HorizontalAlignment="Left" Margin="55,2,0,0" VerticalAlignment="Top" Width="41" Height="38"  Grid.Row="2" Grid.Column="0" Click="enterNumToDeposit"/>
+                <Button Content="" HorizontalAlignment="Left" Margin="102,2,0,0" VerticalAlignment="Top" Width="42" Height="38"  Grid.Row="2" Grid.Column="0"/>
+            </Grid>
+            <TextBox x:Name="DepositEntry" HorizontalAlignment="Left" Height="33" Margin="492,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" FontSize="20"/>
+            <Grid x:Name="DepositError" HorizontalAlignment="Left" Height="62" Margin="302,130,0,0" VerticalAlignment="Top" Width="347" Visibility="Hidden">
+                <Border BorderBrush="#FFFD0000" BorderThickness="3" HorizontalAlignment="Left" Height="42" Margin="185,12,0,0" VerticalAlignment="Top" Width="160"/>
+                <TextBlock x:Name="DepositErrorText" HorizontalAlignment="Left" Margin="0,12,0,0" TextWrapping="Wrap" Text="Please contact an employee to deposit that much at once" VerticalAlignment="Top" Height="40" Width="180"/>
             </Grid>
         </Grid>
         <Grid x:Name="ActionSuccessfulPage" Height="407" VerticalAlignment="Bottom" Margin="756,0,-756,-449">
             <TextBlock x:Name="MainMenu_textBox2_Copy2" HorizontalAlignment="Left" Height="31" Margin="248,155,0,0" TextWrapping="Wrap" Text="Account balances" VerticalAlignment="Top" Width="188" FontSize="24" Grid.ColumnSpan="2"/>
-            <Button x:Name="btn_transfer_Copy" Content="Return to Main Menu" HorizontalAlignment="Left" Margin="275,300,0,0" VerticalAlignment="Top" Width="120" Height="30" Grid.ColumnSpan="2"/>
-            <Button x:Name="btn_transfer_Copy1" Content="Logout" HorizontalAlignment="Left" Margin="275,344,0,0" VerticalAlignment="Top" Width="120" Height="30" Grid.ColumnSpan="2"/>
+            <Button x:Name="btn_transfer_Copy" Content="Return to Main Menu" HorizontalAlignment="Left" Margin="275,300,0,0" VerticalAlignment="Top" Width="120" Height="30" Grid.ColumnSpan="2" Click="GoToMainMenu"/>
+            <Button x:Name="btn_transfer_Copy1" Content="Logout" HorizontalAlignment="Left" Margin="275,377,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
             <TextBlock x:Name="mm_textBlock_Copy2" HorizontalAlignment="Left" Margin="424,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="Return to the main menu to choose a new action."/>
             <TextBlock x:Name="MainMenu_textBox1_Copy" HorizontalAlignment="Left" Height="62" Margin="148,30,0,0" TextWrapping="Wrap" Text="Transaction Successful" VerticalAlignment="Top" Width="373" FontSize="36" Grid.ColumnSpan="2"/>
             <Grid HorizontalAlignment="Left" Height="93" VerticalAlignment="Top" Width="202" Margin="248,186,0,0" RenderTransformOrigin="0.61,0.455" Grid.ColumnSpan="2">
@@ -141,20 +183,24 @@
                 <TextBlock x:Name="balance_tfs2" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
             </Grid>
         </Grid>
-        <Grid x:Name="WithdrawPage" Margin="0,0,0,46">
+        <Grid x:Name="WithdrawPage" Margin="756,-486,-756,532">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="Withdraw Money" VerticalAlignment="Top" Width="517" FontSize="36" TextAlignment="Center"/>
             <TextBlock HorizontalAlignment="Left" Height="31" Margin="40,146,0,0" TextWrapping="Wrap" Text="Select An Account" VerticalAlignment="Top" Width="198" FontSize="24"/>
-            <Button x:Name="WWbtn_logout1" Content="Logout" HorizontalAlignment="Left" Margin="291,407,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
+            <Button x:Name="WWbtn_logout1" Content="Logout" HorizontalAlignment="Left" Margin="293,430,0,-22" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
             <Grid HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="201" Margin="37,182,0,0" RenderTransformOrigin="0.61,0.455">
                 <TextBlock x:Name="balance_chk3" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_sav3" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_tfs3" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
-                <RadioButton Content="Checking" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
-                <RadioButton Content="Saving" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top"/>
-                <RadioButton Content="TFSA" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="checking" Content="Checking" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked" />
+                <RadioButton x:Name="saving" Content="Saving" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked"/>
+                <RadioButton x:Name="tfsa" Content="TFSA" GroupName="withdraw_acc" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Checked="RadioButtonChecked"/>
+            </Grid>
+            <Grid x:Name="WithdrawalSelectError" HorizontalAlignment="Left" Height="114" Margin="40,193,0,0" VerticalAlignment="Top" Width="181" Visibility="Hidden" >
+                <Border BorderBrush="Red" BorderThickness="3" HorizontalAlignment="Left" Height="76" VerticalAlignment="Top" Width="122"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="0,81,0,0" TextWrapping="Wrap" Text="Please select an account." VerticalAlignment="Top" Width="137" BorderThickness="0"/>
             </Grid>
             <Image x:Name="bill5" HorizontalAlignment="Left" Height="57" Margin="306,113,0,0" VerticalAlignment="Top" Width="107" Source="images/bill_5.jpg"/>
             <Image x:Name="bill10" HorizontalAlignment="Left" Height="49" Margin="306,170,0,0" VerticalAlignment="Top" Width="107" Source="images/bill_10.jpg"/>
@@ -180,6 +226,7 @@
             <Button x:Name="confirm_withdraw" Content="Confirm Withdraw" HorizontalAlignment="Left" Margin="492,349,0,0" VerticalAlignment="Top" Width="122" Height="33" Click="WithdrawConfirmButton"/>
             <TextBlock HorizontalAlignment="Left" Height="31" Margin="492,306,0,0" TextWrapping="Wrap" Text="Total: " VerticalAlignment="Top" Width="63" FontSize="24"/>
             <TextBlock x:Name="withdraw_total" HorizontalAlignment="Left" Height="31" Margin="560,311,0,0" TextWrapping="Wrap" Text="$0" VerticalAlignment="Top" Width="54" FontSize="18" RenderTransformOrigin="1.498,0.591"/>
+            <Button x:Name="btn_transfer_Copy2" Content="Return to Main Menu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="GoToMainMenu"/>
         </Grid>
     </Grid>
 

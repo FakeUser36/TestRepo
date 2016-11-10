@@ -21,7 +21,6 @@ namespace BankMachine
     public class Account {
         public string accountNumber;
         public int pin;
-        //public Dictionary<string, double> accountsAndBalances = new Dictionary<string, double>();
         public double[] balances;
         public Account(string num, int pass, double[] acctBal)
         {
@@ -78,6 +77,7 @@ namespace BankMachine
         bool loginViaAcctNum = false;
         Account currentAccount = null;
         pages currentPage;
+        int currentSelectedAccount = -1;
 
         //Test accounts
         List<Account> accounts = new List<Account>();
@@ -440,6 +440,11 @@ namespace BankMachine
             GoToPage(pages.depositPage);
         }
 
+        private void WithdrawPageButton(object sender, RoutedEventArgs e)
+        {
+            GoToPage(pages.withdrawPage);
+        }
+
         private void btn_logout_Click(object sender, RoutedEventArgs e)
         {
             Clear_Click(sender, e);
@@ -476,23 +481,142 @@ namespace BankMachine
             totalTextBlock.Text = "$"+total.ToString();
         }
 
-        private void WithdrawPageButton(object sender, RoutedEventArgs e)
-        {
-            GoToPage(pages.withdrawPage);
-        }
 
         private void WithdrawConfirmButton(object sender, RoutedEventArgs e)
         {
-            int acc = 0; // checkings
-            int total = withdrawData.getTotal();
-            if (total > 0 && total < currentAccount.balances[acc])
+            if (currentSelectedAccount == -1)
             {
-                currentAccount.balances[acc] -= total;
-                updateBalances();
-                GoToPage(pages.actionSuccessfulPage);
+                WithdrawalSelectError.Visibility = Visibility.Visible;
+                return;
+            }
+
+            int total = withdrawData.getTotal();
+            if (total > 0 && total < currentAccount.balances[currentSelectedAccount])
+            {
+                performWithdrawal(total);
             }
         }
 
+        private void performWithdrawal(double total)
+        {
+            currentAccount.balances[currentSelectedAccount] -= total;
+            currentSelectedAccount = -1;
+            updateBalances();
+            WithdrawalSelectError.Visibility = Visibility.Hidden;
+            //WithdrawalError.Visibility = Visibility.Hidden;
+            GoToPage(pages.actionSuccessfulPage);
+        }
+
+        //Successful transaction page and account listeners
+        private void GoToMainMenu(object sender, RoutedEventArgs e)
+        {
+            GoToPage(pages.mainMenuPage);
+        }
+
         //Deposit Page Methods And Action Listeners
+
+        //This method is called whenever the user presses a key on the deposit page
+        private void enterNumToDeposit(object sender, RoutedEventArgs e)
+        {
+            DepositError.Visibility = Visibility.Hidden;
+            string num = (((Button)sender).Content.ToString());
+            if (DepositEntry.Text.Length < 16)
+            {
+                if (num == "." & DepositEntry.Text.Contains("."))
+                {
+                    DepositErrorText.Text = "You may not have more than one decimal point.";
+                    DepositError.Visibility=Visibility.Visible;
+                    return;
+                }
+
+                string [] nums = DepositEntry.Text.Split('.');
+
+                if(nums.Length>1 && nums[1].Length>1){
+                    DepositErrorText.Text = "You may not deposit fractions of cents.";
+                    DepositError.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                DepositEntry.Text += num;
+            }
+            else {
+                DepositErrorText.Text = "Please contact an employee to deposit that much at once.";
+                DepositError.Visibility = Visibility.Visible;
+            }
+        }
+
+        //This method is invoked when the user 
+        private void DepositConfirmButton(object sender, RoutedEventArgs e)
+        {
+            if (currentSelectedAccount == -1) {
+                DepositSelectError.Visibility = Visibility.Visible;
+                return;
+            }
+
+            double val;
+
+            if (DepositEntry.Text.Length < 1) {
+                DepositErrorText.Text = "Please enter an amount to deposit.";
+                DepositError.Visibility = Visibility.Visible;
+                return;
+            }
+
+            if (Double.TryParse(DepositEntry.Text, out val))
+            {
+                performDeposit(val);
+            }
+            else
+            {
+                DepositErrorText.Text = "You may not have more than one decimal point.";
+                DepositError.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void performDeposit(double val) {
+            currentAccount.balances[currentSelectedAccount] += val;
+            DepositEntry.Text = "";
+            currentSelectedAccount = -1;
+            updateBalances();
+            DepositSelectError.Visibility = Visibility.Hidden;
+            DepositError.Visibility = Visibility.Hidden;
+            GoToPage(pages.actionSuccessfulPage);
+        }
+            
+        private void DepositEnrtyBack(object sender, RoutedEventArgs e){
+            DepositError.Visibility = Visibility.Hidden;
+            if (DepositEntry.Text.Length > 1)
+            {
+               DepositEntry.Text = DepositEntry.Text.Substring(0, DepositEntry.Text.Length - 1);
+            }
+            else 
+            {
+                DepositEntry.Text = "";
+            }
+        }
+
+        private void DepositClear(object sender, RoutedEventArgs e){
+            DepositEntry.Text = "";
+        }
+
+        private void RadioButtonChecked(object sender, RoutedEventArgs e)
+        {
+            DepositSelectError.Visibility = Visibility.Hidden;
+            
+            string button = ((RadioButton)sender).Content.ToString();
+            switch (button){
+                case "Checking":
+                    currentSelectedAccount = 0;
+                    break;
+                case "Saving":
+                    currentSelectedAccount = 1;
+                    break;
+                case "TFSA":
+                    currentSelectedAccount = 2;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
+
