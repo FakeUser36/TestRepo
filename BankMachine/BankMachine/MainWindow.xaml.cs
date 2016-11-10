@@ -823,9 +823,9 @@ namespace BankMachine
             TransferEntryError.Visibility = Visibility.Hidden;
             TransferFromSelectError.Visibility = Visibility.Hidden;
             TransferToSelectError.Visibility = Visibility.Hidden;
-            checking1.IsChecked = false;
-            saving1.IsChecked = false;
-            tfsa1.IsChecked = false;
+            checking2.IsChecked = false;
+            saving2.IsChecked = false;
+            tfsa2.IsChecked = false;
             checking3.IsChecked = false;
             saving3.IsChecked = false;
             tfsa3.IsChecked = false;
