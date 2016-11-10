@@ -123,7 +123,7 @@
             </Grid.RowDefinitions>
             <TextBlock x:Name="MainMenu_textBox3" HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="Deposit Money" VerticalAlignment="Top" Width="517" FontSize="36" TextAlignment="Center"/>
             <TextBlock x:Name="MainMenu_textBox2_Copy1" HorizontalAlignment="Left" Height="31" Margin="40,146,0,0" TextWrapping="Wrap" Text="Select An Account" VerticalAlignment="Top" Width="198" FontSize="24"/>
-            <Button x:Name="btn_logout1" Content="Logout" HorizontalAlignment="Left" Margin="286,430,0,-33" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
+            <Button x:Name="btn_logout1" Content="Logout" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click" RenderTransformOrigin="0.475,0"/>
             <Grid HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="201" Margin="37,182,0,0" RenderTransformOrigin="0.61,0.455">
                 <TextBlock x:Name="balance_chk1" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_sav1" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
@@ -182,7 +182,7 @@
                 <TextBlock x:Name="balance_sav2" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_tfs2" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
             </Grid>
-            <TextBlock x:Name="transaction_complete_message" HorizontalAlignment="Left" Height="31" Margin="208,97,0,0" TextWrapping="Wrap" Text="Successfully withdrawn $123." VerticalAlignment="Top" Width="313" FontSize="20"/>
+            <TextBlock x:Name="transaction_complete_message" HorizontalAlignment="Center" Height="58" Margin="69,97,112,0" TextWrapping="Wrap" Text="Successfully withdrawn $123." VerticalAlignment="Top" Width="515" FontSize="20" TextAlignment="Center"/>
         </Grid>
         <Grid x:Name="WithdrawPage" Margin="756,-486,-756,532">
             <Grid.RowDefinitions>
@@ -190,7 +190,7 @@
             </Grid.RowDefinitions>
             <TextBlock HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="Withdraw Money" VerticalAlignment="Top" Width="517" FontSize="36" TextAlignment="Center"/>
             <TextBlock HorizontalAlignment="Left" Height="31" Margin="40,146,0,0" TextWrapping="Wrap" Text="Select An Account" VerticalAlignment="Top" Width="198" FontSize="24"/>
-            <Button x:Name="WWbtn_logout1" Content="Logout" HorizontalAlignment="Left" Margin="293,430,0,-22" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
+            <Button x:Name="WWbtn_logout1" Content="Logout" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
             <Grid HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="201" Margin="37,182,0,0" RenderTransformOrigin="0.61,0.455">
                 <TextBlock x:Name="balance_chk3" HorizontalAlignment="Left" Margin="102,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
                 <TextBlock x:Name="balance_sav3" HorizontalAlignment="Left" Margin="102,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>

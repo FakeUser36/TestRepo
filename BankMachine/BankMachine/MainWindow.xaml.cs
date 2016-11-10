@@ -140,18 +140,18 @@ namespace BankMachine
 
         private void updateBalances()
         {
-            balance_chk.Text = "$" + currentAccount.balances[0];
-            balance_sav.Text = "$" + currentAccount.balances[1];
-            balance_tfs.Text = "$" + currentAccount.balances[2];
-            balance_chk1.Text = "$" + currentAccount.balances[0];
-            balance_sav1.Text = "$" + currentAccount.balances[1];
-            balance_tfs1.Text = "$" + currentAccount.balances[2];
-            balance_chk2.Text = "$" + currentAccount.balances[0];
-            balance_sav2.Text = "$" + currentAccount.balances[1];
-            balance_tfs2.Text = "$" + currentAccount.balances[2];
-            balance_chk3.Text = "$" + currentAccount.balances[0];
-            balance_sav3.Text = "$" + currentAccount.balances[1];
-            balance_tfs3.Text = "$" + currentAccount.balances[2];
+            balance_chk.Text = currentAccount.balances[0].ToString("c");
+            balance_sav.Text = currentAccount.balances[1].ToString("c");
+            balance_tfs.Text = currentAccount.balances[2].ToString("c");
+            balance_chk1.Text = currentAccount.balances[0].ToString("c");
+            balance_sav1.Text = currentAccount.balances[1].ToString("c");
+            balance_tfs1.Text = currentAccount.balances[2].ToString("c");
+            balance_chk2.Text = currentAccount.balances[0].ToString("c");
+            balance_sav2.Text = currentAccount.balances[1].ToString("c");
+            balance_tfs2.Text = currentAccount.balances[2].ToString("c");
+            balance_chk3.Text = currentAccount.balances[0].ToString("c");
+            balance_sav3.Text = currentAccount.balances[1].ToString("c");
+            balance_tfs3.Text = currentAccount.balances[2].ToString("c");
         }
 
         public MainWindow()
@@ -526,7 +526,7 @@ namespace BankMachine
             updateBalances();
             WithdrawalSelectError.Visibility = Visibility.Hidden;
             //WithdrawalError.Visibility = Visibility.Hidden;
-            ActionSuccessfulUpdate("Successfully withdrawn $" + total + ".");
+            ActionSuccessfulUpdate("Successfully withdrawn " + total.ToString("c") + ".");
             withdrawPageReset();
             GoToPage(pages.actionSuccessfulPage);
         }
@@ -610,6 +610,10 @@ namespace BankMachine
             updateBalances();
             DepositSelectError.Visibility = Visibility.Hidden;
             DepositError.Visibility = Visibility.Hidden;
+            checking1.IsChecked = false;
+            saving1.IsChecked = false;
+            tfsa1.IsChecked = false;
+            ActionSuccessfulUpdate("Successfully deposited " + val.ToString("c") + ".");
             GoToPage(pages.actionSuccessfulPage);
         }
             
