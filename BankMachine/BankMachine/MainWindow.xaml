@@ -108,7 +108,7 @@
             <Button x:Name="btn_transfer" Content="Transfer" HorizontalAlignment="Left" Margin="76,328,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="TransferPageButton"/>
             <TextBlock x:Name="mm_textBlock" HorizontalAlignment="Left" Margin="90,226,0,0" TextWrapping="Wrap" Text="Withdraw money from an account." VerticalAlignment="Top"/>
             <TextBlock x:Name="mm_textBlock_Copy" HorizontalAlignment="Left" Margin="90,295,0,0" TextWrapping="Wrap" Text="Deposit money to an account." VerticalAlignment="Top"/>
-            <TextBlock x:Name="mm_textBlock_Copy1" HorizontalAlignment="Left" Margin="90,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"><Run Text="Transfer funds between accounts, to other people, or pay bills."/><LineBreak/><Run/></TextBlock>
+            <TextBlock x:Name="mm_textBlock_Copy1" HorizontalAlignment="Left" Margin="90,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"><Run Text="Transfer funds between accounts."/><LineBreak/><Run/></TextBlock>
             <TextBlock x:Name="MainMenu_textBox2_Copy" HorizontalAlignment="Left" Height="64" Margin="432,142,0,0" TextWrapping="Wrap" Text="Account balances" VerticalAlignment="Top" Width="188" FontSize="24"/>
             <Button x:Name="btn_logout" Content="Logout" HorizontalAlignment="Left" Margin="291,407,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="btn_logout_Click"/>
             <Grid HorizontalAlignment="Left" Height="134" VerticalAlignment="Top" Width="201" Margin="445,186,0,0" RenderTransformOrigin="0.61,0.455">
