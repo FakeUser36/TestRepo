@@ -173,7 +173,7 @@
                 <TextBlock x:Name="DepositErrorText" HorizontalAlignment="Left" Margin="0,12,0,0" TextWrapping="Wrap" Text="Please contact an employee to deposit that much at once" VerticalAlignment="Top" Height="40" Width="180"/>
             </Grid>
             <Grid x:Name="DepositPopup" HorizontalAlignment="Left" Height="322" Margin="24,107,0,0" VerticalAlignment="Top" Width="662">
-                <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="322" Margin="22,4,0,-4" VerticalAlignment="Top" Width="640" RenderTransformOrigin="1.215,0.815" Background="White"/>
+                <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="322" VerticalAlignment="Top" Width="640" RenderTransformOrigin="1.215,0.815" Background="White"/>
                 <TextBlock x:Name="takeyourmoney_message" HorizontalAlignment="Left" Margin="307,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263" Text="Insert your cash or cheque below." Height="98" FontSize="24"/>
                 <Image x:Name="image" HorizontalAlignment="Left" Height="124" Margin="452,202,0,-4" VerticalAlignment="Top" Width="100" Source="DownArrow.png"/>
             </Grid>
