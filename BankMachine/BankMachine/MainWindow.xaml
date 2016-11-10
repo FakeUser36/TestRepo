@@ -6,7 +6,7 @@
         <Grid x:Name="Hardware" Margin="0,465,0,0">
             <Rectangle x:Name="CardSlot" Fill="#FF555555" HorizontalAlignment="Left" Height="32" Margin="38,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="EnterCard"/>
             <Rectangle Fill="Black" HorizontalAlignment="Left" Height="12" Margin="70,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="176" MouseUp="EnterCard"/>
-            <Rectangle x:Name="CashSlot" HorizontalAlignment="Left" Height="32" Margin="414,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="EnterCard" Fill="#FF919191"/>
+            <Rectangle x:Name="CashSlot" HorizontalAlignment="Left" Height="32" Margin="414,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="240" MouseUp="MoneySlot" Fill="#FF919191"/>
         </Grid>
         <Grid x:Name="StartPage" Margin="20,571,-20,-525">
             <Grid.ColumnDefinitions>
@@ -19,6 +19,7 @@
                 <Image x:Name="Card" HorizontalAlignment="Left" Height="57" VerticalAlignment="Top" Width="73" Source="Card.png" Margin="108,97,0,0"/>
                 <Image x:Name="DownArrow" HorizontalAlignment="Left" Height="181" VerticalAlignment="Top" Width="70" Source="DownArrow.png" Margin="111,171,0,0" Stretch="Fill"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22" Width="233" RenderTransformOrigin="0.343,0.712" Height="59" Text="Insert card into slot  " TextAlignment="Right"/>
+                <Image x:Name="DownArrow_Copy1" HorizontalAlignment="Left" Height="181" VerticalAlignment="Top" Width="70" Source="DownArrow.png" Margin="111,171,0,0" Stretch="Fill"/>
             </Grid>
             <Grid Grid.Column="2" Margin="18,10,12,122">
                 <TextBlock HorizontalAlignment="Left" Height="64" TextWrapping="Wrap" Text="OR" VerticalAlignment="Top" Width="82" FontSize="48" Margin="38,0,0,0"/>
@@ -167,6 +168,12 @@
                 <Border BorderBrush="#FFFD0000" BorderThickness="3" HorizontalAlignment="Left" Height="42" Margin="185,12,0,0" VerticalAlignment="Top" Width="160"/>
                 <TextBlock x:Name="DepositErrorText" HorizontalAlignment="Left" Margin="0,12,0,0" TextWrapping="Wrap" Text="Please contact an employee to deposit that much at once" VerticalAlignment="Top" Height="40" Width="180"/>
             </Grid>
+            <Grid x:Name="DepositPopup" HorizontalAlignment="Left" Height="322" Margin="24,107,0,0" VerticalAlignment="Top" Width="662">
+                <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="323" Margin="12,20,0,-21" VerticalAlignment="Top" Width="640" RenderTransformOrigin="1.215,0.815" Background="White"/>
+                <TextBlock x:Name="takeyourmoney_message" HorizontalAlignment="Left" Margin="307,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263" Text="Insert your cash or cheque below." Height="98" FontSize="24"/>
+                <Image x:Name="image" HorizontalAlignment="Left" Height="124" Margin="452,202,0,-4" VerticalAlignment="Top" Width="100" Source="DownArrow.png"/>
+            </Grid>
+
         </Grid>
         <Grid x:Name="ActionSuccessfulPage" Height="407" VerticalAlignment="Bottom" Margin="756,0,-756,-449">
             <TextBlock x:Name="MainMenu_textBox2_Copy2" HorizontalAlignment="Left" Height="31" Margin="248,155,0,0" TextWrapping="Wrap" Text="Account balances" VerticalAlignment="Top" Width="188" FontSize="24" Grid.ColumnSpan="2"/>
@@ -183,6 +190,11 @@
                 <TextBlock x:Name="balance_tfs2" HorizontalAlignment="Left" Margin="102,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="89" Height="21"><Run Text="$0"/><LineBreak/><Run/></TextBlock>
             </Grid>
             <TextBlock x:Name="transaction_complete_message" HorizontalAlignment="Center" Height="58" Margin="69,97,112,0" TextWrapping="Wrap" Text="Successfully withdrawn $123." VerticalAlignment="Top" Width="515" FontSize="20" TextAlignment="Center"/>
+            <Grid x:Name="TransactionForWithdraw" HorizontalAlignment="Left" Height="123" Margin="51,274,0,0" VerticalAlignment="Top" Width="593">
+                <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="570" RenderTransformOrigin="0.74,0.6" Margin="0,0,0,0" Background="White"/>
+                <Image x:Name="image1" Source="DownArrow.png" Margin="404,10,111,10"/>
+                <TextBlock x:Name="transaction_complete_message_Copy" HorizontalAlignment="Center" Height="58" Margin="169,10,169,0" TextWrapping="Wrap" Text="Take your money below." VerticalAlignment="Top" Width="255" FontSize="20" TextAlignment="Center"/>
+            </Grid>
         </Grid>
         <Grid x:Name="WithdrawPage" Margin="756,-486,-756,532">
             <Grid.RowDefinitions>
@@ -228,6 +240,9 @@
             <TextBlock HorizontalAlignment="Left" Height="31" Margin="492,306,0,0" TextWrapping="Wrap" Text="Total: " VerticalAlignment="Top" Width="63" FontSize="24"/>
             <TextBlock x:Name="withdraw_total" HorizontalAlignment="Left" Height="31" Margin="560,311,0,0" TextWrapping="Wrap" Text="$0" VerticalAlignment="Top" Width="54" FontSize="18" RenderTransformOrigin="1.498,0.591"/>
             <Button x:Name="btn_transfer_Copy2" Content="Return to Main Menu" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Height="30" Click="GoToMainMenu"/>
+        </Grid>
+        <Grid x:Name="AlmostSuccessfulPage" Height="406" VerticalAlignment="Bottom" Margin="772,0,-772,-916">
+            <TextBlock x:Name="almost_successful_title" HorizontalAlignment="Left" Height="62" Margin="90,40,0,0" TextWrapping="Wrap" Text="Deposit Money" VerticalAlignment="Top" Width="517" FontSize="36" TextAlignment="Center"/>
         </Grid>
     </Grid>
 

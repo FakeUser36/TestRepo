@@ -21,12 +21,14 @@ namespace BankMachine
     public class Account {
         public string accountNumber;
         public int pin;
-        public double[] balances;
+        public double[] balances = { 0, 0, 0 };
         public Account(string num, int pass, double[] acctBal)
         {
             accountNumber = num;
             pin = pass;
-            balances = acctBal;
+            balances[0] = acctBal[0];
+            balances[1] = acctBal[1];
+            balances[2] = acctBal[2];
         }
     }
 
@@ -75,8 +77,8 @@ namespace BankMachine
     public partial class MainWindow : Window
     {
         //Variables used by more than one page
-        enum pages { startPage = 0, enterPinPage, removeCardPage, mainMenuPage, depositPage, actionSuccessfulPage, withdrawPage };
-        string[] pageNames = { "StartPage", "EnterPinPage", "RemoveCardPage", "MainMenuPage", "DepositPage", "ActionSuccessfulPage", "WithdrawPage" };
+        enum pages { startPage = 0, enterPinPage, removeCardPage, mainMenuPage, depositPage, actionSuccessfulPage, withdrawPage, almostSuccessfulPage };
+        string[] pageNames = { "StartPage", "EnterPinPage", "RemoveCardPage", "MainMenuPage", "DepositPage", "ActionSuccessfulPage", "WithdrawPage", "AlmostSuccessfulPage" };
 
         bool loginViaAcctNum = false;
         Account currentAccount = null;
@@ -88,6 +90,9 @@ namespace BankMachine
 
         //Withdraw data
         Withdraw withdrawData = new Withdraw();
+
+        //Deposit data
+        double depositVal = 0;
 
         //Dictionary<string, double> accsBals = new Dictionary<string, double>();
         double[] accsBals = { 1561.22, 12122.35, 5001.02 };
@@ -110,6 +115,10 @@ namespace BankMachine
         //Used to reposition grids and make them visible to make switching easy
         private void GoToPage(pages page)
         {
+            //bad coding
+            resetDeposit();
+            TransactionForWithdraw.Visibility = Visibility.Hidden;
+
             Thickness margHide = new Thickness();
             margHide.Left = -9999;
             margHide.Right = 9999;
@@ -172,6 +181,8 @@ namespace BankMachine
             DepositPage.Visibility = Visibility.Hidden;
             ActionSuccessfulPage.Visibility = Visibility.Hidden;
             WithdrawPage.Visibility = Visibility.Hidden;
+            DepositPopup.Visibility = Visibility.Hidden;
+            TransactionForWithdraw.Visibility = Visibility.Hidden;
             GoToPage(pages.startPage);
         }
 
@@ -529,6 +540,7 @@ namespace BankMachine
             ActionSuccessfulUpdate("Successfully withdrawn " + total.ToString("c") + ".");
             withdrawPageReset();
             GoToPage(pages.actionSuccessfulPage);
+            TransactionForWithdraw.Visibility = Visibility.Visible;
         }
 
         //Successful transaction page and account listeners
@@ -584,17 +596,15 @@ namespace BankMachine
                 return;
             }
 
-            double val;
-
             if (DepositEntry.Text.Length < 1) {
                 DepositErrorText.Text = "Please enter an amount to deposit.";
                 DepositError.Visibility = Visibility.Visible;
                 return;
             }
 
-            if (Double.TryParse(DepositEntry.Text, out val))
+            if (Double.TryParse(DepositEntry.Text, out depositVal))
             {
-                performDeposit(val);
+                DepositPopup.Visibility = Visibility.Visible;
             }
             else
             {
@@ -603,20 +613,27 @@ namespace BankMachine
             }
         }
 
-        private void performDeposit(double val) {
-            currentAccount.balances[currentSelectedAccount] += val;
+        private void resetDeposit()
+        {
             DepositEntry.Text = "";
-            currentSelectedAccount = -1;
-            updateBalances();
             DepositSelectError.Visibility = Visibility.Hidden;
             DepositError.Visibility = Visibility.Hidden;
             checking1.IsChecked = false;
             saving1.IsChecked = false;
             tfsa1.IsChecked = false;
-            ActionSuccessfulUpdate("Successfully deposited " + val.ToString("c") + ".");
+            currentSelectedAccount = -1;
+            depositVal = 0;
+            DepositPopup.Visibility = Visibility.Hidden;
+        }
+
+        private void performDeposit() {
+            currentAccount.balances[currentSelectedAccount] += depositVal;
+            updateBalances();
+            ActionSuccessfulUpdate("Successfully deposited " + depositVal.ToString("c") + ".");
+            resetDeposit();
             GoToPage(pages.actionSuccessfulPage);
         }
-            
+
         private void DepositEnrtyBack(object sender, RoutedEventArgs e){
             DepositError.Visibility = Visibility.Hidden;
             if (DepositEntry.Text.Length > 1)
@@ -650,6 +667,18 @@ namespace BankMachine
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void MoneySlot(object sender, MouseButtonEventArgs e)
+        {
+            if (currentPage == pages.depositPage && DepositPopup.Visibility == Visibility.Visible)
+            {
+                performDeposit();
+            }
+            else if (currentPage == pages.actionSuccessfulPage && TransactionForWithdraw.Visibility == Visibility.Visible)
+            {
+                GoToPage(pages.mainMenuPage);
             }
         }
     }
